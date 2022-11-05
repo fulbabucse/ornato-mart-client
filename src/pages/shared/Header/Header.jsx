@@ -142,9 +142,11 @@ function Header() {
                   </div>
                 </div>
               </li>
-              <li className="text-gray-600 hover:text-blue-600">
-                <Link to="/orders">Orders</Link>
-              </li>
+              {user?.uid && (
+                <li className="text-gray-600 hover:text-blue-600">
+                  <Link to="/orders">Orders</Link>
+                </li>
+              )}
 
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/about">About</Link>

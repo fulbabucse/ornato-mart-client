@@ -35,7 +35,6 @@ export const router = createBrowserRouter([
       { path: "about", element: <About></About> },
       {
         path: "orders",
-        loader: () => fetch("http://localhost:5000/cart"),
         element: (
           <PrivateRoute>
             <Orders></Orders>

@@ -1,39 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { AuthContexts } from "../../contexts/AuthProvider/AuthProvider";
 
 const Orders = () => {
+  const { user } = useContext(AuthContexts);
   const [orders, setOrders] = useState([]);
-  const products = useLoaderData();
 
-  const handleDeleteProduct = (id) => {
-    const agree = window.confirm("Are you sure cancel this orders");
-    if (agree) {
-      fetch(`http://localhost:5000/cart/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            const restOrders = orders.filter((odr) => odr._id !== id);
-            toast.error("Orders cancel successfully");
-            setOrders(restOrders);
-          }
-        })
-        .catch((err) => console.error(err));
-    }
-  };
+  useEffect(() => {
+    fetch(`http://localhost:5000/cart?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setOrders(data))
+      .catch((err) => console.error(err));
+  }, []);
+
+  // const handleDeleteProduct = (id) => {
+  //   const agree = window.confirm("Are you sure cancel this orders");
+  //   if (agree) {
+  //     fetch(`http://localhost:5000/cart/${id}`, {
+  //       method: "DELETE",
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         if (data.deletedCount > 0) {
+  //           const restOrders = order.filter((odr) => odr._id !== id);
+  //           toast.error("Orders cancel successfully");
+  //           setOrder(restOrders);
+  //         }
+  //       })
+  //       .catch((err) => console.error(err));
+  //   }
+  // };
   return (
     <div>
-      {products.length > 0 ? (
+      {orders.length > 0 ? (
         <div className="container mx-auto">
           <div className="flex shadow-md my-10">
             <div className="w-3/4 bg-white px-10 py-10">
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl">
-                  {products.length} Items
+                  {orders.length} Items
                 </h2>
               </div>
               <div className="flex mt-10 mb-5">
@@ -52,30 +61,27 @@ const Orders = () => {
               </div>
 
               <div>
-                {products?.map((product) => (
+                {orders?.map((order) => (
                   <div
-                    key={product._id}
+                    key={order._id}
                     className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5"
                   >
                     <div className="flex w-2/5">
                       <div className="w-20">
                         <img
                           className="h-24"
-                          src={product.thumbnail}
-                          alt={product.title}
+                          src={order.thumbnail}
+                          alt={order.title}
                         />
                       </div>
                       <div className="flex flex-col justify-between ml-4">
                         <span className="font-bold text-sm capitalize">
-                          {product.title}
+                          {order.title}
                         </span>
                         <span className="text-red-500 text-xs">
-                          {product.brand}
+                          {order.brand}
                         </span>
-                        <button
-                          onClick={() => handleDeleteProduct(product._id)}
-                          className="font-semibold hover:text-red-500 text-gray-500 text-xs"
-                        >
+                        <button className="font-semibold hover:text-red-500 text-gray-500 text-xs">
                           Remove
                         </button>
                       </div>
@@ -103,10 +109,10 @@ const Orders = () => {
                       </svg>
                     </div>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      ${product.price}
+                      ${order.price}
                     </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      ${product.price + (product.price / 100) * 10}
+                      ${order.price + (order.price / 100) * 10}
                     </span>
                   </div>
                 ))}
@@ -127,7 +133,7 @@ const Orders = () => {
               </h1>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">
-                  Items {products.length}
+                  Items {orders.length}
                 </span>
                 <span className="font-semibold text-sm">590$</span>
               </div>
