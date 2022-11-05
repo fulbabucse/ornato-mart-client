@@ -35,7 +35,7 @@ const ProductDetails = () => {
           <ProductCarousel product={product}></ProductCarousel>
         </div>
         <div>
-          <h3 className="text-3xl font-bold text-gray-700 capitalize">
+          <h3 className="text-xl font-bold text-gray-700 capitalize">
             {title}
           </h3>
           <div className="text-lg font-semibold">
