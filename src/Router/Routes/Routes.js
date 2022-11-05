@@ -5,6 +5,10 @@ import Home from "../../pages/Home/Home/Home";
 import Orders from "../../pages/Orders/Orders";
 import ProductDetails from "../../pages/Products/ProductDetails/ProductDetails";
 import Products from "../../pages/Products/Products/Products";
+import Login from "../../pages/User/Login/Login";
+import Profile from "../../pages/User/Profile/Profile";
+import Register from "../../pages/User/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +33,25 @@ export const router = createBrowserRouter([
         element: <ProductDetails></ProductDetails>,
       },
       { path: "about", element: <About></About> },
-      { path: "orders", element: <Orders></Orders> },
+      {
+        path: "orders",
+        loader: () => fetch("http://localhost:5000/cart"),
+        element: (
+          <PrivateRoute>
+            <Orders></Orders>
+          </PrivateRoute>
+        ),
+      },
+      { path: "login", element: <Login></Login> },
+      { path: "register", element: <Register></Register> },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

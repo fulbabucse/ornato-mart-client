@@ -5,12 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
 import ProductsProvider from "./contexts/ProductsProvider/ProductsProvider";
+import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ProductsProvider>
-    <App />
-  </ProductsProvider>
+  <AuthProvider>
+    <ProductsProvider>
+      <App />
+      <Toaster />
+    </ProductsProvider>
+  </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

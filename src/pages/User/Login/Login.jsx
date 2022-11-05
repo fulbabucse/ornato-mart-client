@@ -1,15 +1,15 @@
 import React from "react";
 import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
-import logo from "../../../assets/images/login/register.svg";
+import logo from "../../../assets/login.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { JWTToken } from "../../../utilities/JWTToken";
 
 const Login = () => {
-  const { signInUser, googleSign, userPasswordReset } = useContext(AuthContext);
+  const { signInUser, googleSign, userPasswordReset } =
+    useContext(AuthContexts);
   const [emailAddress, setEmailAddress] = useState("");
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
@@ -26,7 +26,6 @@ const Login = () => {
     signInUser(email, password)
       .then((res) => {
         const user = res.user;
-        JWTToken(user);
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -43,7 +42,6 @@ const Login = () => {
     googleSign()
       .then((res) => {
         const user = res.user;
-        JWTToken(user);
         navigate(from, { replace: true });
         toast.success("Successfully sign in with Google");
       })

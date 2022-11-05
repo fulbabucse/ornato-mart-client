@@ -1,10 +1,19 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
+import UserThumb from "../../../assets/user_thumbnail.jpg";
 
 function Header() {
   const [navbar, setNavbar] = useState(false);
   const [categories, setCategories] = useState();
+  const { user, userSignOut } = useContext(AuthContexts);
+
+  const handleUserSignOut = () => {
+    userSignOut()
+      .then((res) => {})
+      .catch((err) => console.error(err));
+  };
 
   useEffect(() => {
     fetch("https://dummyjson.com/products/categories")
@@ -140,6 +149,77 @@ function Header() {
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/about">About</Link>
               </li>
+              <div>
+                <div className="flex justify-center">
+                  <div className="dropdown relative">
+                    <button
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <img
+                        className="w-10 h-10 rounded-full"
+                        src={user?.photoURL || UserThumb}
+                        alt="User Picture"
+                      />
+                    </button>
+                    <ul
+                      className=" dropdown-menu px-2 min-w-max absolute hidden bg-white text-base z-50 space-y-2 py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      {user?.uid && (
+                        <li>
+                          <Link
+                            to="/profile"
+                            className="dropdown-item rounded-md text-md py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                          >
+                            {user?.displayName || "User Profile"}
+                          </Link>
+                        </li>
+                      )}
+
+                      <li>
+                        {user?.uid ? (
+                          <button
+                            onClick={handleUserSignOut}
+                            className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold px-4 rounded-md  text-lg text-opacity-90 hover:text-opacity-100 w-full"
+                          >
+                            Log Out
+                          </button>
+                        ) : (
+                          <Link
+                            to="/login"
+                            className="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
+                          >
+                            <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold px-4 rounded-md  text-lg text-opacity-90 hover:text-opacity-100 w-full">
+                              Log In
+                            </button>
+                          </Link>
+                        )}
+                      </li>
+
+                      {!user?.uid && (
+                        <li>
+                          <Link
+                            to="/register"
+                            className="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
+                          >
+                            <button
+                              type="button"
+                              data-mdb-ripple="true"
+                              data-mdb-ripple-color="light"
+                              className="inline-block px-4 py-1 bg-purple-600 text-white font-medium text-lg leading-tight w-full rounded-md shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out normal-case"
+                            >
+                              Register
+                            </button>
+                          </Link>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </ul>
           </div>
         </div>

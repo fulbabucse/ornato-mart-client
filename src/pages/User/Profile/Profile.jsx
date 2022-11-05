@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Profile = () => {
   const { user, updateUserProfile, userPasswordUpdate, deleteUserAccount } =
-    useContext(AuthContext);
+    useContext(AuthContexts);
 
   const nameRef = useRef(user?.displayName);
   const photoLinkRef = useRef(user?.photoURL);

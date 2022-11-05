@@ -3,14 +3,13 @@ import { useState } from "react";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import RegisterLogo from "../../../assets/images/login/login.svg";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import { JWTToken } from "../../../utilities/JWTToken";
+import RegisterLogo from "../../../assets/register.svg";
+import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
   const [errors, setErrors] = useState(null);
   const { createUser, updateUserProfile, verifyUserEmail } =
-    useContext(AuthContext);
+    useContext(AuthContexts);
   const navigate = useNavigate();
   const handleUserLogIn = (e) => {
     setErrors("");
@@ -26,7 +25,6 @@ const Register = () => {
         handleUpdateUser(name, photoURL);
         form.reset();
         handleEmailVerification();
-        JWTToken(user);
         navigate("/");
       })
       .catch((err) => {
