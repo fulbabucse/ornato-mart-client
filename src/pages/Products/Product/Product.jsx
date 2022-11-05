@@ -20,7 +20,6 @@ const Product = ({ product }) => {
 
   const newPrice = price - (price * discountPercentage) / 100;
 
-  console.log(product);
   return (
     <div className="flex justify-center">
       <Link to={`/category/product/${id}`}>
