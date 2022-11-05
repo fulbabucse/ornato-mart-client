@@ -1,11 +1,11 @@
 import { initializeApp } from "firebase/app";
 const firebaseConfig = {
-  apiKey: "AIzaSyBa3_JYdb7-8Y0CoTE3tHkZA3u597UytAI",
-  authDomain: "ornato-mart.firebaseapp.com",
-  projectId: "ornato-mart",
-  storageBucket: "ornato-mart.appspot.com",
-  messagingSenderId: "920465531382",
-  appId: "1:920465531382:web:db1c4b94679d1a368427d7",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 const app = initializeApp(firebaseConfig);
