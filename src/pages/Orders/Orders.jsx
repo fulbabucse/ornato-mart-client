@@ -12,7 +12,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/cart?email=${user?.email}`)
+    fetch(`https://ornato-mart-server.vercel.app/cart?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((err) => console.error(err));
@@ -21,7 +21,7 @@ const Orders = () => {
   const handleDeleteProduct = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
-      fetch(`http://localhost:5000/cart/${id}`, {
+      fetch(`https://ornato-mart-server.vercel.app/cart/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

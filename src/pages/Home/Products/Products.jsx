@@ -12,7 +12,9 @@ const Products = () => {
   const pages = Math.ceil(count / dataSize);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products?page=${page}&size=${dataSize}`)
+    fetch(
+      `https://ornato-mart-server.vercel.app/products?page=${page}&size=${dataSize}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCount(data.count);
@@ -43,7 +45,7 @@ const Products = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {products.map((product) => (
-          <Product key={product.id} product={product}></Product>
+          <Product key={product._id} product={product}></Product>
         ))}
       </div>
 
@@ -60,9 +62,8 @@ const Products = () => {
               </button>
             </li>
             {[...Array(pages).keys()].map((number) => (
-              <li className="page-item">
+              <li key={number} className="page-item">
                 <button
-                  key={number}
                   onClick={() => setPage(number)}
                   className={`${
                     page === number && "bg-orange-400 text-white"
