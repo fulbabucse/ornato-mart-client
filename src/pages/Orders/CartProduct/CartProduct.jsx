@@ -1,30 +1,20 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 
-const CartProduct = ({ product }) => {
-  const [orders, setOrders] = useState([]);
-  const { _id, title, brand, price, thumbnail } = product;
+const CartProduct = ({ order, handleDeleteProduct }) => {
+  const { _id, title, brand, price, thumbnail } = order;
+  const [orderProduct, setOrderProduct] = useState([]);
 
   const tax = (price / 100) * 10;
   const total = price + tax;
 
-  const handleDeleteProduct = (id) => {
-    const agree = window.confirm("Are you sure cancel this orders");
-    if (agree) {
-      fetch(`http://localhost:5000/cart/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            const restOrders = orders.filter((odr) => odr._id !== id);
-            toast.error("Orders cancel successfully");
-            setOrders(restOrders);
-          }
-        })
-        .catch((err) => console.error(err));
-    }
-  };
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products`)
+      .then((res) => res.json())
+      .then((data) => setOrderProduct(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
