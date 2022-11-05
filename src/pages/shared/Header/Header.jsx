@@ -78,7 +78,7 @@ function Header() {
           >
             <ul className="flex flex-col lg:flex-row items-center justify-center space-y-3 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-600 font-md hover:text-blue-600">
-                <Link to="/home">Home</Link>
+                <Link to="/">Home</Link>
               </li>
               <li className="text-gray-600">
                 <div className="flex justify-center">
