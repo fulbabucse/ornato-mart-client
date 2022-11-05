@@ -134,6 +134,10 @@ function Header() {
                 </div>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
+                <Link to="/orders">Orders</Link>
+              </li>
+
+              <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/about">About</Link>
               </li>
             </ul>

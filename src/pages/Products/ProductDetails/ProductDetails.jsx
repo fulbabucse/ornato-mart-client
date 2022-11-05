@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import ProductCarousel from "../ProductCarousel/ProductCarousel";
 import "../../../assets/styles.css";
@@ -8,8 +8,10 @@ import {
   FaTruckMoving,
   FaFileInvoiceDollar,
 } from "react-icons/fa";
+import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
 
 const ProductDetails = () => {
+  const { handleAddToCart } = useContext(ProductsContext);
   const product = useLoaderData();
   const {
     id,
@@ -23,6 +25,9 @@ const ProductDetails = () => {
     stock,
   } = product;
   const newPrice = price - (price * discountPercentage) / 100;
+
+  const newProduct = { ...product, newPrice };
+
   return (
     <div className="product-container">
       <div className="flex gap-6">
@@ -71,10 +76,11 @@ const ProductDetails = () => {
               </p>
             </div>
             <button
+              onClick={() => handleAddToCart(newProduct)}
               type="button"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
-              class="inline-block px-4 py-2.5 bg-orange-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out mt-3"
+              className="inline-block px-4 py-2.5 bg-orange-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out mt-3"
             >
               Add to Cart
             </button>
