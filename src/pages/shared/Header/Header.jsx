@@ -77,6 +77,30 @@ function Header() {
             }`}
           >
             <ul className="flex flex-col lg:flex-row items-center justify-center space-y-3 md:flex md:space-x-6 md:space-y-0">
+              <div class="w-3/5">
+                <input
+                  type="search"
+                  class="
+        form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+      "
+                  id="exampleSearch"
+                  placeholder="Type query"
+                />
+              </div>
               <li className="text-gray-600 font-md hover:text-blue-600">
                 <Link to="/">Home</Link>
               </li>
