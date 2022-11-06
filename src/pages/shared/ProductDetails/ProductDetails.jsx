@@ -30,7 +30,7 @@ const ProductDetails = () => {
 
   return (
     <div className="product-container">
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-6">
         <div className="shadow-xl rounded-md">
           <ProductCarousel product={product}></ProductCarousel>
         </div>
