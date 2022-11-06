@@ -43,7 +43,7 @@ const Products = () => {
           matches your styling taste and budget needs.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 px-3">
         {products.map((product) => (
           <Product key={product._id} product={product}></Product>
         ))}
@@ -51,7 +51,7 @@ const Products = () => {
 
       <div className="flex justify-center mt-5">
         <nav aria-label="Page navigation example">
-          <ul className="flex list-style-none">
+          <ul className="flex flex-wrap list-style-none">
             <li className="page-item">
               <button
                 onClick={() => handlePrePage()}

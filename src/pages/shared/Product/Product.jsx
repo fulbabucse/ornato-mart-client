@@ -21,10 +21,14 @@ const Product = ({ product }) => {
   const newPrice = price - (price * discountPercentage) / 100;
 
   return (
-    <div className="flex justify-center">
+    <div>
       <Link to={`/category/product/${id}`}>
         <div className="rounded-lg h-full shadow-lg hover:shadow-2xl transition-all duration-200 bg-white">
-          <a data-mdb-ripple="true" data-mdb-ripple-color="orange">
+          <a
+            className="product__image"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="orange"
+          >
             <img
               className="rounded-t-lg product-img"
               src={thumbnail}
