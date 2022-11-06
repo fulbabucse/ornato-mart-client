@@ -58,13 +58,13 @@ const AuthProvider = ({ children }) => {
   };
 
   const userSignOut = () => {
-    localStorage.removeItem("genius-token");
+    localStorage.removeItem("ornato-token");
     setLoading(true);
     return signOut(auth);
   };
 
   const deleteUserAccount = () => {
-    localStorage.removeItem("genius-token");
+    localStorage.removeItem("ornato-token");
     setLoading(true);
     return deleteUser(auth.currentUser);
   };

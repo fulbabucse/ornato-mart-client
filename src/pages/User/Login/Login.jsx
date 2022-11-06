@@ -36,10 +36,9 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("ornato-token", data.token);
-            navigate(from, { replace: true });
           });
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         if (err.message === "Firebase: Error (auth/user-not-found).") {

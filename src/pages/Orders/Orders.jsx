@@ -7,16 +7,27 @@ import { AuthContexts } from "../../contexts/AuthProvider/AuthProvider";
 import CartProduct from "./CartProduct/CartProduct";
 
 const Orders = () => {
-  const { user } = useContext(AuthContexts);
+  const { user, userSignOut } = useContext(AuthContexts);
 
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`https://ornato-mart-server.vercel.app/cart?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setOrders(data))
+    fetch(`http://localhost:5000/cart?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("ornato-token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return userSignOut();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setOrders(data);
+      })
       .catch((err) => console.error(err));
-  }, [user?.email]);
+  }, [user?.email, userSignOut]);
 
   const handleDeleteProduct = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
