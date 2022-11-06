@@ -62,20 +62,20 @@ const Banner = () => {
                   alt="..."
                 />
               </div>
-              <div className="carousel-caption hidden md:block absolute lg:top-40 space-y-3 w-full lg:w-2/4">
+              <div className="carousel-caption top-5 lg:top-40 md:block absolute space-y-3 w-3/5 lg:w-2/4">
                 <h5 className="text-xl lg:text-6xl font-bold">
                   Love the power <br /> Love the price
                 </h5>
-                <p className="text-lg">
+                <p className="text-xs lg:text-lg">
                   With Apple Trade In, you can get credit toward a new iPhone
                   when you trade in an eligible smartphone.7 It’s good for you
                   and the planet.
                 </p>
                 <div className="flex gap-3">
-                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
                     Latest Projects
                   </button>
                 </div>
@@ -91,19 +91,19 @@ const Banner = () => {
                 />
               </div>
 
-              <div className="carousel-caption hidden md:block absolute lg:top-40 space-y-3 w-full lg:w-2/4">
+              <div className="carousel-caption md:block absolute top-10 lg:top-40 space-y-3 w-4/5 lg:w-2/4">
                 <h5 className="text-xl lg:text-6xl font-bold capitalize">
                   Our Everyday Pieces
                 </h5>
-                <p className="text-lg">
+                <p className="text-xs lg:text-lg">
                   Introducing our new Sustainability Programme Product Trace
                   your favorite MV pieces from conception to completion.
                 </p>
                 <div className="flex gap-3">
-                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
                     Latest Projects
                   </button>
                 </div>
@@ -119,19 +119,19 @@ const Banner = () => {
                 />
               </div>
 
-              <div className="carousel-caption hidden md:block absolute lg:top-40 space-y-3 w-full ">
+              <div className="carousel-caption md:block absolute top-5 lg:top-40 space-y-3 w-4/5 lg:w-3/4">
                 <h5 className="text-xl lg:text-6xl font-bold">
                   And the crowd goes wild <br /> The Fan Edition is back.
                 </h5>
-                <p className="text-lg w-3/5">
+                <p className="text-xs lg:text-lg w-3/5">
                   Galaxy S21 series is 5G ready. Compatibility dependent upon 5G
                   network availability in Bangladesh.
                 </p>
                 <div className="flex gap-3">
-                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
                     Latest Projects
                   </button>
                 </div>
@@ -147,19 +147,19 @@ const Banner = () => {
                 />
               </div>
 
-              <div className="carousel-caption hidden md:block absolute lg:top-40 space-y-3 w-full lg:w-2/4">
+              <div className="carousel-caption md:block absolute top-10 lg:top-40 space-y-3 w-4/5 lg:w-2/4">
                 <h5 className="text-xl lg:text-6xl font-bold">
                   OnePlus 10 Pro 5G
                 </h5>
-                <p className="text-lg">
+                <p className="text-xs lg:text-lg">
                   The pursuit of tactile perfection with balanced weight
                   distribution.
                 </p>
                 <div className="flex gap-3">
-                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
                     Latest Projects
                   </button>
                 </div>
@@ -175,22 +175,20 @@ const Banner = () => {
                 />
               </div>
 
-              <div className="carousel-caption hidden md:block absolute lg:top-40 space-y-3 w-full lg:w-2/4">
+              <div className="carousel-caption md:block absolute top-4 lg:top-40 space-y-3 w-4/5 lg:w-2/4">
                 <h5 className="text-xl lg:text-6xl font-bold">
                   Discover a <br /> new level of meeting collaboration
                 </h5>
-                <p className="text-lg">
-                  Introducing the HP Dragonfly Folio—this sophisticated, highly
-                  secure, multi-mode PC anticipates and adapts to your life,
-                  your work, and your surroundings.
+                <p className="text-xs lg:text-lg">
+                  Introducing the HP Dragonfly Folio—this sophisticated, <br />
+                  highly secure, multi-mode PC anticipates and adapts <br /> to
+                  your life, your work, and your surroundings.
                 </p>
                 <div className="flex gap-3">
-                  <Link to="/category/laptops">
-                    <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
-                      Discover More
-                    </button>
-                  </Link>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
+                    Discover More
+                  </button>
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
                     Latest Projects
                   </button>
                 </div>
@@ -205,19 +203,19 @@ const Banner = () => {
                 />
               </div>
 
-              <div className="carousel-caption hidden md:block absolute lg:top-40 space-y-3 w-full lg:w-2/4">
+              <div className="carousel-caption md:block absolute top-8 lg:top-40 space-y-3 w-4/5 lg:w-2/4">
                 <h5 className="text-xl lg:text-6xl font-bold">
                   Fashion Changing Always
                 </h5>
-                <p className="text-lg">
+                <p className="text-xs lg:text-lg">
                   There are many variations of passages of available, but the
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
                     Latest Projects
                   </button>
                 </div>
