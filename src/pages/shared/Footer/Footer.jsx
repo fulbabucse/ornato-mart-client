@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer class="relative z-10 bg-white lg:pt-10">
+    <footer class="relative z-10 bg-white mt-10 lg:pt-10">
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap">
           <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
@@ -235,8 +235,8 @@ const Footer = () => {
                 y2="1.22829e-05"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#3056D3" stop-opacity="0.08" />
-                <stop offset="1" stop-color="#C4C4C4" stop-opacity="0" />
+                <stop stop-color="#3056D3" stopOpacity="0.08" />
+                <stop offset="1" stop-color="#C4C4C4" stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>
@@ -262,8 +262,8 @@ const Footer = () => {
                 y2="37.5"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stop-color="#13C296" stop-opacity="0.31" />
-                <stop offset="1" stop-color="#C4C4C4" stop-opacity="0" />
+                <stop stop-color="#13C296" stopOpacity="0.31" />
+                <stop offset="1" stop-color="#C4C4C4" stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>

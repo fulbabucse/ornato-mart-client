@@ -76,7 +76,6 @@ const Products = () => {
             <li className="page-item">
               <button
                 onClick={() => handleNextPage()}
-                disabled={page === dataSize - 1}
                 className="page-link relative block cursor-pointer py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
               >
                 Next
