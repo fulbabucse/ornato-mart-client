@@ -51,10 +51,10 @@ const Orders = () => {
     <div>
       {orders.length > 0 ? (
         <div className="container mx-auto">
-          <div className="flex shadow-md my-10">
-            <div className="w-3/4 bg-white px-10 py-10">
+          <div className="flex flex-col lg:flex-row shadow-md my-10">
+            <div className="w-full lg:w-3/4 bg-white px-10 py-10">
               <div className="flex justify-between border-b pb-8">
-                <h1 className="font-semibold text-2xl">Shopping Cart</h1>
+                <h1 className="font-semibold text-2xl">Products</h1>
                 <h2 className="font-semibold text-2xl">
                   {orders.length} Items
                 </h2>
@@ -93,7 +93,7 @@ const Orders = () => {
               </Link>
             </div>
 
-            <div id="summary" className="w-1/4 px-8 py-10">
+            <div id="summary" className="w-full lg:w-1/4 px-8 py-10">
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary
               </h1>

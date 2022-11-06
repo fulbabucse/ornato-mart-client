@@ -1,26 +1,20 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+import React from "react";
 
 const CartProduct = ({ order, handleDeleteProduct }) => {
   const { _id, title, brand, price, thumbnail } = order;
-  const [orderProduct, setOrderProduct] = useState([]);
 
   const tax = (price / 100) * 10;
   const total = price + tax;
-
-  useEffect(() => {
-    fetch(`https://dummyjson.com/products`)
-      .then((res) => res.json())
-      .then((data) => setOrderProduct(data))
-      .catch((err) => console.error(err));
-  }, []);
 
   return (
     <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
       <div className="flex w-2/5">
         <div className="w-20">
-          <img className="h-24" src={thumbnail} alt={title} />
+          <img
+            className="h-10 lg:h-24 rounded-md"
+            src={thumbnail}
+            alt={title}
+          />
         </div>
         <div className="flex flex-col justify-between ml-4">
           <span className="font-bold text-sm capitalize">{title}</span>
