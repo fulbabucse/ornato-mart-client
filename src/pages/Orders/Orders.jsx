@@ -12,7 +12,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/cart?email=${user?.email}`, {
+    fetch(`https://ornato-mart-server.vercel.app/cart?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("ornato-token")}`,
       },
