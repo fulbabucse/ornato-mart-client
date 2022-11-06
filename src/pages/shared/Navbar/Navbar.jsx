@@ -30,7 +30,9 @@ const Navbar = () => {
             <div className="flex items-center justify-between">
               <div>
                 <Link to="/">
-                  <img className="w-16 h-10" src={logo} alt="Genius Car logo" />
+                  <h1 className="text-3xl font-bold text-orange-400 uppercase">
+                    Ornato Mart
+                  </h1>
                 </Link>
               </div>
 
