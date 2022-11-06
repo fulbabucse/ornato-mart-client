@@ -25,8 +25,21 @@ const Login = () => {
 
     signInUser(email, password)
       .then((res) => {
-        const user = res.user;
-        navigate(from, { replace: true });
+        const user = { email: res.user.email };
+
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("ornato-token", data.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((err) => {
         if (err.message === "Firebase: Error (auth/user-not-found).") {
