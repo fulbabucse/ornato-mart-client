@@ -208,7 +208,9 @@ const Footer = () => {
                   </svg>
                 </a>
               </div>
-              <p class="text-body-color text-base">&copy; 2025 TailGrids</p>
+              <p class="text-body-color text-base">
+                &copy; 2022 Ornato-mart.com
+              </p>
             </div>
           </div>
         </div>

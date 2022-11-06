@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Banner.css";
 
 const Banner = () => {
@@ -75,9 +74,6 @@ const Banner = () => {
                   <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
-                    Latest Projects
-                  </button>
                 </div>
               </div>
             </div>
@@ -102,9 +98,6 @@ const Banner = () => {
                 <div className="flex gap-3">
                   <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
-                  </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
-                    Latest Projects
                   </button>
                 </div>
               </div>
@@ -131,9 +124,6 @@ const Banner = () => {
                   <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
-                    Latest Projects
-                  </button>
                 </div>
               </div>
             </div>
@@ -158,9 +148,6 @@ const Banner = () => {
                 <div className="flex gap-3">
                   <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
-                  </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
-                    Latest Projects
                   </button>
                 </div>
               </div>
@@ -188,9 +175,6 @@ const Banner = () => {
                   <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
-                    Latest Projects
-                  </button>
                 </div>
               </div>
             </div>
@@ -214,9 +198,6 @@ const Banner = () => {
                 <div className="flex gap-3">
                   <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                     Discover More
-                  </button>
-                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 lg:h-12 rounded-sm text-opacity-90 hover:text-opacity-100">
-                    Latest Projects
                   </button>
                 </div>
               </div>
