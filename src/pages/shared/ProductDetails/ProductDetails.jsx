@@ -14,7 +14,6 @@ const ProductDetails = () => {
   const { handleAddToCart } = useContext(ProductsContext);
   const product = useLoaderData();
   const {
-    id,
     title,
     brand,
     category,
@@ -29,7 +28,7 @@ const ProductDetails = () => {
   const newProduct = { ...product, newPrice };
 
   return (
-    <div className="product-container">
+    <div className="product-container max-w-screen-xl mx-auto">
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="shadow-xl rounded-md">
           <ProductCarousel product={product}></ProductCarousel>
