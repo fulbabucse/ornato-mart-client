@@ -131,7 +131,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 {user?.uid && (
-                  <li className="text-gray-600 hover:text-blue-600 list-none">
+                  <li className="text-gray-600 hover:text-blue-600 list-none mr-3">
                     <Link to="/orders">Orders</Link>
                   </li>
                 )}
