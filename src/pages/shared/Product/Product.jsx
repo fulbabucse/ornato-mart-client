@@ -4,19 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const {
-    id,
-    title,
-    brand,
-    category,
-    description,
-    discountPercentage,
-    images,
-    price,
-    rating,
-    stock,
-    thumbnail,
-  } = product;
+  const { id, title, discountPercentage, price, rating, thumbnail } = product;
 
   const newPrice = price - (price * discountPercentage) / 100;
 

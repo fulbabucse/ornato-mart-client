@@ -5,6 +5,7 @@ import Home from "../../pages/Home/Home/Home";
 import Orders from "../../pages/Orders/Orders";
 import Products from "../../pages/Products/Products/Products";
 import Search from "../../pages/Search/Search";
+import Error from "../../pages/shared/Error/Error";
 import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
 import Login from "../../pages/User/Login/Login";
 import Profile from "../../pages/User/Profile/Profile";
@@ -60,6 +61,7 @@ export const router = createBrowserRouter([
         },
         element: <Search></Search>,
       },
+      { path: "*", element: <Error></Error> },
     ],
   },
 ]);
