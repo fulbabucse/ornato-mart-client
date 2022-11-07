@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaSearch, FaTh, FaTimes } from "react-icons/fa";
-import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
