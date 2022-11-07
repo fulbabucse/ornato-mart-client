@@ -4,6 +4,7 @@ import About from "../../pages/About/About";
 import Home from "../../pages/Home/Home/Home";
 import Orders from "../../pages/Orders/Orders";
 import Products from "../../pages/Products/Products/Products";
+import Search from "../../pages/Search/Search";
 import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
 import Login from "../../pages/User/Login/Login";
 import Profile from "../../pages/User/Profile/Profile";
@@ -49,6 +50,15 @@ export const router = createBrowserRouter([
             <Profile></Profile>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/search/:name",
+        loader: ({ params }) => {
+          return fetch(
+            `https://dummyjson.com/products/search?q=${params.name}`
+          );
+        },
+        element: <Search></Search>,
       },
     ],
   },

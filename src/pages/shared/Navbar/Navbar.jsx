@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FaTh, FaTimes } from "react-icons/fa";
+import { FaSearch, FaTh, FaTimes } from "react-icons/fa";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [categories, setCategories] = useState();
   const { user, userSignOut } = useContext(AuthContexts);
+  const [search, setSearch] = useState("");
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -22,6 +23,11 @@ const Navbar = () => {
       .then((data) => setCategories(data))
       .catch((err) => console.error(err));
   }, []);
+
+  const handleSearchBlue = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div>
       <nav className="bg-white shadow dark:bg-gray-800">
@@ -131,28 +137,26 @@ const Navbar = () => {
                   </li>
                 )}
 
-                <div className="relative mt-4 lg:mt-0 lg:mx-4">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <svg
-                      className="w-4 h-4 text-gray-600 dark:text-gray-300"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      ></path>
-                    </svg>
-                  </span>
-
-                  <input
-                    type="text"
-                    className="w-full py-1 pl-10 pr-4 text-gray-700 placeholder-gray-600 bg-white border-b border-gray-600 dark:placeholder-gray-300 dark:focus:border-gray-300 lg:w-56 lg:border-transparent dark:bg-gray-800 dark:text-gray-300 focus:outline-none focus:border-gray-600"
-                    placeholder="Search"
-                  />
+                <div className="xl:w-96">
+                  <div className="input-group relative flex flex-wrap items-stretch w-full">
+                    <input
+                      type="search"
+                      onBlur={handleSearchBlue}
+                      className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      placeholder="Search"
+                      aria-label="Search"
+                      aria-describedby="button-addon2"
+                    />
+                    <Link to={`/search/${search}`}>
+                      <button
+                        className="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+                        type="button"
+                        id="button-addon2"
+                      >
+                        <FaSearch className="text-xl"></FaSearch>
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
 
