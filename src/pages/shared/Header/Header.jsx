@@ -77,10 +77,10 @@ function Header() {
             }`}
           >
             <ul className="flex flex-col lg:flex-row items-center justify-center space-y-3 md:flex md:space-x-6 md:space-y-0">
-              <div class="w-3/5">
+              <div className="w-3/5">
                 <input
                   type="search"
-                  class="
+                  className="
         form-control
         block
         w-full
