@@ -8,6 +8,7 @@ import { AuthContexts } from "../AuthProvider/AuthProvider";
 export const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
+  const [search, setSearch] = useState("");
   const { user } = useContext(AuthContexts);
   const [totalPrice, setTotalPrice] = useState(0);
   const email = user?.email;
@@ -29,7 +30,13 @@ const ProductsProvider = ({ children }) => {
       .catch((err) => console.error(err));
   };
 
-  const productInfo = { handleAddToCart, totalPrice, setTotalPrice };
+  const productInfo = {
+    handleAddToCart,
+    totalPrice,
+    setTotalPrice,
+    search,
+    setSearch,
+  };
   return (
     <ProductsContext.Provider value={productInfo}>
       {children}

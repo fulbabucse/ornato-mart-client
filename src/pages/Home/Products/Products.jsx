@@ -1,9 +1,12 @@
 import React from "react";
+import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
 import Product from "../../shared/Product/Product";
 
 const Products = () => {
+  const { search } = useContext(ProductsContext);
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
@@ -13,7 +16,7 @@ const Products = () => {
 
   useEffect(() => {
     fetch(
-      `https://ornato-mart-server.vercel.app/products?page=${page}&size=${dataSize}`
+      `http://localhost:5000/products?search=${search}&page=${page}&size=${dataSize}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -21,13 +24,13 @@ const Products = () => {
         setProducts(data.products);
       })
       .catch((err) => console.error(err));
-  }, [page, dataSize]);
+  }, [page, dataSize, search]);
 
   const handlePrePage = () => {
     setPage(page - 1);
   };
 
-  const handleNextPage = (p) => {
+  const handleNextPage = () => {
     setPage(page + 1);
   };
 
@@ -48,6 +51,18 @@ const Products = () => {
           <Product key={product._id} product={product}></Product>
         ))}
       </div>
+
+      {products.length === 0 && (
+        <>
+          <h1 className="text-center text-xl font-semibold text-red-400">
+            <span className="text-red-500 font-bold text-2xl">{search}!</span>{" "}
+            <span className="capitalize">
+              No food found with this name. <br /> Please! try to search with
+              the correct name.
+            </span>
+          </h1>
+        </>
+      )}
 
       <div className="flex justify-center mt-5">
         <nav aria-label="Page navigation example">

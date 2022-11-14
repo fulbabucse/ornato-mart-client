@@ -3,16 +3,17 @@ import { FaSearch, FaTh, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
+import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [categories, setCategories] = useState();
   const { user, userSignOut } = useContext(AuthContexts);
-  const [search, setSearch] = useState("");
+  const { setSearch } = useContext(ProductsContext);
 
   const handleUserSignOut = () => {
     userSignOut()
-      .then((res) => {})
+      .then(() => {})
       .catch((err) => console.error(err));
   };
 
@@ -23,8 +24,9 @@ const Navbar = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleSearchBlue = (e) => {
-    setSearch(e.target.value);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(e.target.search.value);
   };
 
   return (
@@ -137,25 +139,26 @@ const Navbar = () => {
                 )}
 
                 <div className="xl:w-96">
-                  <div className="input-group relative flex flex-wrap items-stretch w-full">
+                  <form
+                    onSubmit={handleSearch}
+                    className="input-group relative flex flex-wrap items-stretch w-full"
+                  >
                     <input
                       type="search"
-                      onBlur={handleSearchBlue}
+                      name="search"
                       className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       placeholder="Search"
                       aria-label="Search"
                       aria-describedby="button-addon2"
                     />
-                    <Link to={`/search/${search}`}>
-                      <button
-                        className="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
-                        type="button"
-                        id="button-addon2"
-                      >
-                        <FaSearch className="text-xl"></FaSearch>
-                      </button>
-                    </Link>
-                  </div>
+                    <button
+                      className="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+                      type="submit"
+                      id="button-addon2"
+                    >
+                      <FaSearch className="text-xl"></FaSearch>
+                    </button>
+                  </form>
                 </div>
               </div>
 
