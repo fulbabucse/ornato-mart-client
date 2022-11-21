@@ -12,6 +12,7 @@ import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProv
 
 const ProductDetails = () => {
   const { handleAddToCart } = useContext(ProductsContext);
+
   const product = useLoaderData();
   const {
     title,
@@ -24,6 +25,7 @@ const ProductDetails = () => {
     stock,
   } = product;
   const newPrice = price - (price * discountPercentage) / 100;
+  console.log(product);
 
   const newProduct = { ...product, newPrice };
 

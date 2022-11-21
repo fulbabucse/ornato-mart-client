@@ -7,15 +7,21 @@ import "tw-elements";
 import ProductsProvider from "./contexts/ProductsProvider/ProductsProvider";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Create a client
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthProvider>
-    <ProductsProvider>
-      <App />
-      <Toaster />
-    </ProductsProvider>
-  </AuthProvider>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <ProductsProvider>
+        <App />
+        <Toaster />
+      </ProductsProvider>
+    </AuthProvider>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

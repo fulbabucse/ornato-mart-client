@@ -24,7 +24,7 @@ const Product = ({ product }) => {
             />
           </a>
           <div className="p-6">
-            <h5 className="text-gray-700 text-xl font-bold mb-2 capitalize">
+            <h5 className="text-gray-700 text-md font-bold mb-2 capitalize">
               {title}
             </h5>
             <div className="text-lg font-semibold">

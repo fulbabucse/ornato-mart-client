@@ -13,6 +13,11 @@ const ProductsProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const email = user?.email;
   const handleAddToCart = (product) => {
+    if (!user?.email) {
+      toast.error("Please Login");
+      return;
+    }
+
     const newProduct = { ...product, email };
 
     fetch("https://ornato-mart-server.vercel.app/cart", {

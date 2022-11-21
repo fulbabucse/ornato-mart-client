@@ -21,18 +21,11 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/category/:category",
-        loader: ({ params }) =>
-          fetch(`https://dummyjson.com/products/category/${params.category}`),
-        element: <Products></Products>,
-      },
-      {
         path: "/category/product/:id",
         loader: ({ params }) =>
           fetch(`https://dummyjson.com/products/${params.id}`),
         element: <ProductDetails></ProductDetails>,
       },
-      { path: "about", element: <About></About> },
       {
         path: "orders",
         element: (

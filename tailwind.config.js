@@ -5,7 +5,11 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primaryColor: "#F85606",
+      },
+    },
   },
   plugins: [require("tw-elements/dist/plugin")],
 };
