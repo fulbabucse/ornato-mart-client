@@ -1,24 +1,97 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaCartArrowDown, FaSearch, FaTh, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
-// import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContexts);
   const { setSearch } = useContext(ProductsContext);
 
-  // const { data: categories = [] } = useQuery({
-  //   queryKey: [],
-  //   queryFn: async () => {
-  //     const res = await fetch("http://localhost:5000/categories");
-  //     const data = await res.json();
-  //     return data;
-  //   },
-  // });
+  const { data: mensSubCategory = [] } = useQuery({
+    queryKey: ["men"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/sub-category/men");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { data: womensSubCategory = [] } = useQuery({
+    queryKey: ["women"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/sub-category/women");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { data: electronicsDevices = [] } = useQuery({
+    queryKey: ["electronics-devices"],
+    queryFn: async () => {
+      const res = await fetch(
+        "http://localhost:5000/sub-category/electronics-devices"
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { data: babiesToyes = [] } = useQuery({
+    queryKey: ["babies-toys"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/sub-category/babies-toys");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { data: healthBeauty = [] } = useQuery({
+    queryKey: ["health-beauty"],
+    queryFn: async () => {
+      const res = await fetch(
+        "http://localhost:5000/sub-category/health-beauty"
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { data: automotives = [] } = useQuery({
+    queryKey: ["automotive-motorbike"],
+    queryFn: async () => {
+      const res = await fetch(
+        "http://localhost:5000/sub-category/automotive-motorbike"
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { data: electronicsAccessories = [] } = useQuery({
+    queryKey: ["electronics-accessories"],
+    queryFn: async () => {
+      const res = await fetch(
+        "http://localhost:5000/sub-category/electronics-accessories"
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { data: homeAppliance = [] } = useQuery({
+    queryKey: ["tv-appliance"],
+    queryFn: async () => {
+      const res = await fetch(
+        "http://localhost:5000/sub-category/tv-appliance"
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -57,10 +130,10 @@ const Navbar = () => {
                   : "hidden opacity-0 -translate-x-full"
               }`}
             >
-              <nav class="navbar navbar-expand-lg py-2 relative flex items-center w-full justify-between">
-                <div class="px-6">
+              <nav className="navbar navbar-expand-lg py-2 relative flex items-center w-full justify-between">
+                <div className="px-6">
                   <button
-                    class="navbar-toggler border-0 py-3 lg:hidden leading-none text-xl bg-transparent text-gray-600 hover:text-gray-700 focus:text-gray-700 transition-shadow duration-150 ease-in-out"
+                    className="navbar-toggler border-0 py-3 lg:hidden leading-none text-xl bg-transparent text-gray-600 hover:text-gray-700 focus:text-gray-700 transition-shadow duration-150 ease-in-out"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContentY"
@@ -72,7 +145,7 @@ const Navbar = () => {
                       aria-hidden="true"
                       focusable="false"
                       data-prefix="fas"
-                      class="w-5"
+                      className="w-5"
                       role="img"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
@@ -84,13 +157,13 @@ const Navbar = () => {
                     </svg>
                   </button>
                   <div
-                    class="navbar-collapse collapse grow items-center"
+                    className="navbar-collapse collapse grow items-center"
                     id="navbarSupportedContentY"
                   >
-                    <ul class="navbar-nav mr-auto flex flex-row">
-                      <li class="nav-item dropdown static">
+                    <ul className="navbar-nav mr-auto flex flex-row">
+                      <li className="nav-item dropdown static">
                         <a
-                          class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out dropdown-toggle flex items-center whitespace-nowrap"
+                          className="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out dropdown-toggle flex items-center whitespace-nowrap"
                           href="#"
                           data-mdb-ripple="true"
                           data-mdb-ripple-color="light"
@@ -105,7 +178,7 @@ const Navbar = () => {
                             focusable="false"
                             data-prefix="fas"
                             data-icon="caret-down"
-                            class="w-2 ml-2"
+                            className="w-2 ml-2"
                             role="img"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 320 512"
@@ -117,274 +190,131 @@ const Navbar = () => {
                           </svg>
                         </a>
                         <div
-                          class="dropdown-menu w-full mt-0 hidden shadow-lg bg-white absolute left-0 top-full"
+                          className="dropdown-menu w-full mt-0 hidden shadow-lg bg-white absolute left-0 top-full"
                           aria-labelledby="dropdownMenuButtonY"
                         >
-                          <div class="px-6 lg:px-8 py-5">
-                            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
+                          <div className="px-6 lg:px-8 py-5">
+                            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
                                   Men's Fashion
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Dolor sit
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Amet consectetur
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cras justo odio
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Adipisicing elit
-                                </a>
+
+                                {mensSubCategory?.map((menCategory) => (
+                                  <Link
+                                    to={`/category/${menCategory?.category_id}`}
+                                    aria-current="true"
+                                    key={menCategory?._id}
+                                    className="block px-2 py-1 capitalize text-sm border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {menCategory?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
                                   Women's Fashion
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Perspiciatis quo
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cras justo odio
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Laudant maiores
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Provident dolor
-                                </a>
+                                {womensSubCategory?.map((womenCategory) => (
+                                  <Link
+                                    to={`/category/${womenCategory?.category_id}`}
+                                    aria-current="true"
+                                    key={womenCategory?._id}
+                                    className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {womenCategory?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
                                   Electronics Devices
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cras justo odio
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Est iure
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Praesentium
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Laboriosam
-                                </a>
+                                {electronicsDevices?.map((electronics) => (
+                                  <Link
+                                    to={`/category/${electronics?.category_id}`}
+                                    aria-current="true"
+                                    key={electronics?._id}
+                                    className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {electronics?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
                                   Health & Beauty
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Saepe
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Vel alias
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Sunt doloribus
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cum dolores
-                                </a>
+                                {healthBeauty?.map((healths) => (
+                                  <Link
+                                    to={`/category/${healths?.category_id}`}
+                                    aria-current="true"
+                                    key={healths?._id}
+                                    className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {healths?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
                                   Automotive & Engines
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Saepe
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Vel alias
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Sunt doloribus
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cum dolores
-                                </a>
+                                {automotives?.map((automotive) => (
+                                  <Link
+                                    to={`/category/${automotive?.category_id}`}
+                                    aria-current="true"
+                                    key={automotive?._id}
+                                    className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {automotive?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
                                   Electronics Accessories
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Saepe
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Vel alias
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Sunt doloribus
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cum dolores
-                                </a>
+                                {electronicsAccessories?.map((accessories) => (
+                                  <Link
+                                    to={`/category/${accessories?.category_id}`}
+                                    aria-current="true"
+                                    key={accessories?._id}
+                                    className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {accessories?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
                                   Tv & Home Appliances
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Saepe
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Vel alias
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Sunt doloribus
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cum dolores
-                                </a>
+                                {homeAppliance?.map((home) => (
+                                  <Link
+                                    to={`/category/${home?.category_id}`}
+                                    aria-current="true"
+                                    key={home?._id}
+                                    className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {home?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
-                              <div class="bg-white text-gray-600">
-                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                              <div className="bg-white text-gray-600">
+                                <p className="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
                                   Babies & Toys
                                 </p>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Saepe
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Vel alias
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Sunt doloribus
-                                </a>
-                                <a
-                                  href="#!"
-                                  aria-current="true"
-                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
-                                >
-                                  Cum dolores
-                                </a>
+                                {babiesToyes?.map((babiesToy) => (
+                                  <Link
+                                    to={`/category/${babiesToy?.category_id}`}
+                                    aria-current="true"
+                                    key={babiesToy?._id}
+                                    className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
+                                  >
+                                    {babiesToy?.sub_category}
+                                  </Link>
+                                ))}
                               </div>
                             </div>
                           </div>
