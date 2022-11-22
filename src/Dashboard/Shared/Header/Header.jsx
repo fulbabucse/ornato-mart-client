@@ -53,12 +53,6 @@ const Header = () => {
               }`}
             >
               <div className="flex flex-col items-center transition-all duration-300 ease-in-out  text-gray-600 capitalize dark:text-gray-300 lg:flex lg:-mx-4 lg:flex-row lg:items-center justify-between gap-10">
-                {user?.uid && (
-                  <li className="text-gray-600 hover:text-primaryColor list-none mr-3">
-                    <Link to="/orders">Orders</Link>
-                  </li>
-                )}
-
                 <button
                   className="inline-block px-4 py-3 bg-primaryColor text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-primaryColor hover:shadow-lg focus:bg-primaryColor focus:shadow-lg  focus:outline-none focus:ring-0 active:bg-primaryColor active:shadow-lg transition duration-150 ease-in-out"
                   type="button"

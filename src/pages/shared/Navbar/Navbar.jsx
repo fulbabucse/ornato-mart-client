@@ -326,16 +326,20 @@ const Navbar = () => {
               </nav>
 
               <div className="flex flex-col items-center transition-all duration-300 ease-in-out  text-gray-600 capitalize dark:text-gray-300 lg:flex lg:-mx-4 lg:flex-row lg:items-center justify-between gap-10">
-                {user?.uid && (
-                  <li className="text-gray-600 hover:text-primaryColor list-none mr-3">
-                    <Link to="/orders">Orders</Link>
-                  </li>
-                )}
-
                 <div className="flex gap-4 px-10 items-center">
                   <li className="list-none">
+                    {user?.uid && (
+                      <li className="text-gray-600 hover:text-primaryColor list-none">
+                        <Link to="/orders">
+                          <FaCartArrowDown className="text-3xl font-bold text-primaryColor"></FaCartArrowDown>
+                        </Link>
+                      </li>
+                    )}
+                  </li>
+
+                  <li className="list-none">
                     <Link to="/dashboard">
-                      <FaCartArrowDown className="text-3xl font-bold text-primaryColor"></FaCartArrowDown>
+                      <h5>Dashboard</h5>
                     </Link>
                   </li>
 

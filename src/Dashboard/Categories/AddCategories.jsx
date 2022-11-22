@@ -52,11 +52,11 @@ const AddCategories = () => {
       </div>
       <div className="block p-6 rounded-lg shadow-lg bg-white w-full lg:w-2/5">
         <form className="space-y-3" onSubmit={handleSubmit(handleFormSubmit)}>
-          <div class="flex justify-center">
-            <div class="mb-3 w-full">
+          <div className="flex justify-center">
+            <div className="mb-3 w-full">
               <select
                 {...register("category_name")}
-                class="form-select focus:shadow-none appearance-none
+                className="form-select focus:shadow-none appearance-none
       block
       w-full
       px-3
