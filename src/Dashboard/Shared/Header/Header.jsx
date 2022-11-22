@@ -89,12 +89,6 @@ const Header = () => {
                 </div>
 
                 <div className="flex gap-4 items-center">
-                  <li className="list-none">
-                    <Link to="/dashboard">
-                      <FaCartArrowDown className="text-3xl font-bold text-primaryColor"></FaCartArrowDown>
-                    </Link>
-                  </li>
-
                   <div className="flex justify-center mt-6 lg:flex lg:mt-0 lg:-mx-2">
                     <div>
                       <div className="flex justify-center">
