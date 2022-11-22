@@ -4,32 +4,26 @@ import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContexts);
   const { setSearch } = useContext(ProductsContext);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const { data: categories = [] } = useQuery({
-    queryKey: [],
-    queryFn: async () => {
-      const res = await fetch("categories.json");
-      const data = await res.json();
-      return data;
-    },
-  });
+  // const { data: categories = [] } = useQuery({
+  //   queryKey: [],
+  //   queryFn: async () => {
+  //     const res = await fetch("http://localhost:5000/categories");
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
 
   const handleUserSignOut = () => {
     userSignOut()
       .then(() => {})
       .catch((err) => console.error(err));
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearch(e.target.search.value);
   };
 
   return (
@@ -57,47 +51,349 @@ const Navbar = () => {
             </div>
 
             <div
-              className={`flex-1 lg:ml-20 justify-self-center pb-3 md:block md:pb-0 md:mt-0 absolute inset-x-0 z-20 w-full px-6 py-4 bg-white dark:bg-gray-800  lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center lg:justify-between ${
+              className={`flex-1 justify-self-center pb-3 md:block md:pb-0 md:mt-0 absolute inset-x-0 z-20 w-full px-6 py-4 bg-white dark:bg-gray-800  lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center lg:justify-between ${
                 navbar
                   ? "block translate-x-0 opacity-100"
                   : "hidden opacity-0 -translate-x-full"
               }`}
             >
-              <div className="relative inline-block ">
-                <button
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:outline-none"
-                >
-                  <span className="mx-1 text-sm focus:text-primaryColor active:text-primaryColor">
-                    Categories
-                  </span>
-                  <svg
-                    className="w-5 h-5 mx-1"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+              <nav class="navbar navbar-expand-lg py-2 relative flex items-center w-full justify-between">
+                <div class="px-6">
+                  <button
+                    class="navbar-toggler border-0 py-3 lg:hidden leading-none text-xl bg-transparent text-gray-600 hover:text-gray-700 focus:text-gray-700 transition-shadow duration-150 ease-in-out"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContentY"
+                    aria-controls="navbarSupportedContentY"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
                   >
-                    <path
-                      d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
-                </button>
-
-                {isDropdownOpen && (
-                  <div className="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
-                    {categories?.map((category) => (
-                      <a
-                        key={category?._id}
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:text-white hover:bg-primaryColor dark:hover:bg-gray-700 dark:hover:text-white"
-                      >
-                        {category?.name}
-                      </a>
-                    ))}
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      class="w-5"
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <div
+                    class="navbar-collapse collapse grow items-center"
+                    id="navbarSupportedContentY"
+                  >
+                    <ul class="navbar-nav mr-auto flex flex-row">
+                      <li class="nav-item dropdown static">
+                        <a
+                          class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out dropdown-toggle flex items-center whitespace-nowrap"
+                          href="#"
+                          data-mdb-ripple="true"
+                          data-mdb-ripple-color="light"
+                          type="button"
+                          id="dropdownMenuButtonY"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Menu
+                          <svg
+                            aria-hidden="true"
+                            focusable="false"
+                            data-prefix="fas"
+                            data-icon="caret-down"
+                            class="w-2 ml-2"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                            ></path>
+                          </svg>
+                        </a>
+                        <div
+                          class="dropdown-menu w-full mt-0 hidden shadow-lg bg-white absolute left-0 top-full"
+                          aria-labelledby="dropdownMenuButtonY"
+                        >
+                          <div class="px-6 lg:px-8 py-5">
+                            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
+                                  Men's Fashion
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Dolor sit
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Amet consectetur
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cras justo odio
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Adipisicing elit
+                                </a>
+                              </div>
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
+                                  Women's Fashion
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Perspiciatis quo
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cras justo odio
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Laudant maiores
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Provident dolor
+                                </a>
+                              </div>
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full  font-semibold text-gray-700">
+                                  Electronics Devices
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cras justo odio
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Est iure
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Praesentium
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Laboriosam
+                                </a>
+                              </div>
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                                  Health & Beauty
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Saepe
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Vel alias
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Sunt doloribus
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cum dolores
+                                </a>
+                              </div>
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                                  Automotive & Engines
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Saepe
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Vel alias
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Sunt doloribus
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cum dolores
+                                </a>
+                              </div>
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                                  Electronics Accessories
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Saepe
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Vel alias
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Sunt doloribus
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cum dolores
+                                </a>
+                              </div>
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                                  Tv & Home Appliances
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Saepe
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Vel alias
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Sunt doloribus
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cum dolores
+                                </a>
+                              </div>
+                              <div class="bg-white text-gray-600">
+                                <p class="block px-2 text-sm py-2 border-b border-gray-200 w-full font-semibold text-gray-700">
+                                  Babies & Toys
+                                </p>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Saepe
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Vel alias
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 border-b border-gray-200 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Sunt doloribus
+                                </a>
+                                <a
+                                  href="#!"
+                                  aria-current="true"
+                                  class="block px-2 py-2 w-full hover:bg-gray-50 hover:text-gray-700 transition duration-150 ease-in-out"
+                                >
+                                  Cum dolores
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                )}
-              </div>
+                </div>
+              </nav>
 
               <div className="flex flex-col items-center transition-all duration-300 ease-in-out  text-gray-600 capitalize dark:text-gray-300 lg:flex lg:-mx-4 lg:flex-row lg:items-center justify-between gap-10">
                 {user?.uid && (
@@ -106,34 +402,11 @@ const Navbar = () => {
                   </li>
                 )}
 
-                <div>
-                  <div className="lg:w-[600px]">
-                    <form
-                      onSubmit={handleSearch}
-                      className="input-group relative flex flex-wrap items-stretch w-full"
-                    >
-                      <input
-                        type="search"
-                        name="search"
-                        className="form-control focus:shadow-none relative flex-auto  block px-3 py-1.5 text-base font-normal text-gray-700 bg-white  border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:bg-white focus:outline-none"
-                        placeholder="Search in Ornato Mart"
-                        aria-label="Search"
-                        aria-describedby="button-addon2"
-                      />
-                      <button
-                        className="btn px-4 py-3 bg-primaryColor text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primaryColor hover:shadow-lg focus:bg-primaryColor  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primaryColor active:shadow-lg transition duration-150 ease-in-out flex items-center"
-                        type="submit"
-                        id="button-addon2"
-                      >
-                        <FaSearch className="text-xl"></FaSearch>
-                      </button>
-                    </form>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-4 px-10 items-center">
                   <li className="list-none">
-                    <FaCartArrowDown className="text-3xl font-bold text-primaryColor"></FaCartArrowDown>
+                    <Link to="/dashboard">
+                      <FaCartArrowDown className="text-3xl font-bold text-primaryColor"></FaCartArrowDown>
+                    </Link>
                   </li>
 
                   <div className="flex justify-center mt-6 lg:flex lg:mt-0 lg:-mx-2">
@@ -142,6 +415,7 @@ const Navbar = () => {
                         <div className="dropdown relative">
                           <button
                             type="button"
+                            className="w-10 h-10 rounded-full"
                             id="dropdownMenuButton1"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"

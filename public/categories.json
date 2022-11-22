@@ -1,56 +1,45 @@
 [
   {
-    "_id": "637bc74c55d98de33e042669",
     "category_id": "mens-fashion",
     "name": "Men's Fashion"
   },
   {
-    "_id": "637bc74cf914e7da134d0a12",
     "category_id": "women-fashion",
     "name": "Women's Fashion"
   },
   {
-    "_id": "637bc74cd5d7671b5c8f98fe",
     "category_id": "babies-toys",
     "name": "Babies & Toys"
   },
   {
-    "_id": "637bc74c0f1c6ec828d792e3",
     "category_id": "health-beauty",
     "name": "Health and Beauty"
   },
   {
-    "_id": "637bc74c3a6a11d978feb956",
     "category_id": "watches-bag-jewellery",
     "name": "Watches, Bag, Jewellery"
   },
   {
-    "_id": "637bc74c02a858dd2e8378ab",
     "category_id": "electronics-devices",
     "name": "Electronics Devices"
   },
   {
-    "_id": "637bc74c312913f1321a91ad",
     "category_id": "tv-home-appliance",
     "name": "Tv & Home Appliance"
   },
   {
-    "_id": "637bc74cb500ac0dfcea4643",
     "category_id": "electronics-accessories",
     "name": "Electronics Accessories"
   },
   {
-    "_id": "637bc74c166251b8f4492680",
     "category_id": "sports-outdoor",
     "name": "Sports & Outdoors"
   },
   {
-    "_id": "637bc74cd11b8f76ec93cb77",
     "category_id": "automotive-motorbike",
     "name": "Automotive Motorbike"
   },
   {
-    "_id": "637bc74cd5d7971b5c8f98fe",
     "category_id": "home-lifestyle",
     "name": "Home & Lifestyles"
   }
