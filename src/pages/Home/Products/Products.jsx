@@ -16,7 +16,7 @@ const Products = () => {
 
   useEffect(() => {
     fetch(
-      `https://ornato-mart-server.vercel.app/products?search=${search}&page=${page}&size=${dataSize}`
+      `http://localhost:5000/products?search=${search}&page=${page}&size=${dataSize}`
     )
       .then((res) => res.json())
       .then((data) => {

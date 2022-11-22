@@ -3,12 +3,17 @@ import { useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import RegisterLogo from "../../../assets/register.svg";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
+import { useToken } from "../../../hooks/useToken";
 
 const Register = () => {
   const [userErrors, setUserErrors] = useState(null);
+  const [email, setEmail] = useState("");
+  const [token] = useToken(email);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -16,9 +21,15 @@ const Register = () => {
   } = useForm();
   const { createUser, updateUserProfile, verifyUserEmail } =
     useContext(AuthContexts);
+
   const navigate = useNavigate();
 
+  if (token) {
+    navigate(from, { replace: true });
+  }
+
   const handleRegister = (userData) => {
+    setUserErrors("");
     const formData = new FormData();
     formData.append("image", userData.image[0]);
 
@@ -36,20 +47,51 @@ const Register = () => {
               displayName: userData.name,
               photoURL: imageData.data.url,
             };
-            console.log(result.user);
             updateUserProfile(updateInfo)
-              .then(() => {})
-              .catch((err) => console.error(err));
-
-            verifyUserEmail()
               .then(() => {
-                toast.success("Please check your email and verify");
+                userInfoSaveToDB(result.user?.displayName, result.user?.email);
+                verifyUserEmail()
+                  .then(() => {})
+                  .catch((err) => console.error(err));
               })
               .catch((err) => console.error(err));
           })
-          .catch((err) => console.error(err));
+          .catch((err) => {
+            if (
+              err.message === "Firebase: Error (auth/email-already-in-use)."
+            ) {
+              setUserErrors("This Email already used");
+            } else if (
+              err.message ===
+              "Firebase: Password should be at least 6 characters (auth/weak-password)."
+            ) {
+              setUserErrors("Password should be at least 6 characters");
+            }
+          });
       })
       .catch((err) => console.error(err));
+  };
+
+  const userInfoSaveToDB = (name, email) => {
+    const user = {
+      name,
+      email,
+    };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Successfully created Account");
+          setEmail(email);
+        }
+      });
   };
 
   // const handleUpdateUser = (name, photoLink) => {
@@ -71,7 +113,7 @@ const Register = () => {
   // };
 
   return (
-    <section className="h-screen">
+    <section>
       <div className="container px-6 py-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0 flex justify-center">

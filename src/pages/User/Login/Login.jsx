@@ -6,45 +6,38 @@ import { useContext } from "react";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useToken } from "../../../hooks/useToken";
 
 const Login = () => {
-  const { signInUser, googleSign, userPasswordReset } =
-    useContext(AuthContexts);
-  const [emailAddress, setEmailAddress] = useState("");
-  const [errors, setErrors] = useState(null);
+  const [email, setEmail] = useState("");
+  const [token] = useToken(email);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signInUser, googleSign } = useContext(AuthContexts);
+  const [signInErrors, setSignInErrors] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handleUserLogIn = (e) => {
-    setErrors("");
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
-    signInUser(email, password)
-      .then((res) => {
-        const user = { email: res.user.email };
-
-        fetch("https://ornato-mart-server.vercel.app/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(user),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            localStorage.setItem("ornato-token", data.token);
-          });
-        navigate(from, { replace: true });
+  const handleUserLogIn = (userData) => {
+    setSignInErrors("");
+    signInUser(userData.email, userData.password)
+      .then((result) => {
+        setEmail(result.user?.email);
       })
       .catch((err) => {
         if (err.message === "Firebase: Error (auth/user-not-found).") {
-          setErrors("Couldn't find your account");
+          setSignInErrors("Couldn't find your account");
         } else if (err.message === "Firebase: Error (auth/wrong-password).") {
-          setErrors("Invalid username or password");
+          setSignInErrors("Invalid username or password");
         }
         console.error(err);
       });
@@ -52,29 +45,9 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     googleSign()
-      .then((res) => {
-        const user = res.user;
-        navigate(from, { replace: true });
+      .then((result) => {
+        setEmail(result.user?.email);
         toast.success("Successfully sign in with Google");
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const handleEmailBlur = (e) => {
-    setEmailAddress(e.target.value);
-  };
-
-  const handlePasswordReset = () => {
-    if (!emailAddress) {
-      toast.error("Please enter your email address");
-      return;
-    }
-
-    userPasswordReset(emailAddress)
-      .then((res) => {
-        toast.success(
-          "Password reset email has sent, Please check Inbox or Spam"
-        );
       })
       .catch((err) => console.error(err));
   };
@@ -95,26 +68,37 @@ const Login = () => {
                 Log in to access your account
               </p>
             </div>
-            <form onSubmit={handleUserLogIn}>
+            <form onSubmit={handleSubmit(handleUserLogIn)}>
               <div className="mb-3">
                 <input
-                  type="text"
-                  name="email"
-                  onBlur={handleEmailBlur}
+                  type="email"
+                  {...register("email", {
+                    required: "Email address is required",
+                  })}
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Email address"
-                  required
                 />
+                {errors.email && (
+                  <p className="text-red-400 font-semibold text-sm">
+                    {errors?.email?.message}
+                  </p>
+                )}
               </div>
 
               <div className="mb-3">
                 <input
                   type="password"
-                  name="password"
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Password"
-                  required
                 />
+                {errors.Password && (
+                  <p className="text-red-400 font-semibold text-sm">
+                    {errors?.Password?.message}
+                  </p>
+                )}
               </div>
 
               <button
@@ -127,11 +111,12 @@ const Login = () => {
               </button>
             </form>
             <div className="flex justify-between items-center mt-3">
-              <p className="text-red-600">{errors}</p>
-              <button
-                onClick={handlePasswordReset}
-                className="text-purple-600 hover:text-purple-700 focus:text-purple-700 active:text-purple-800 duration-200 transition ease-in-out"
-              >
+              {signInErrors && (
+                <p className="text-red-400 font-semibold text-sm">
+                  {signInErrors}
+                </p>
+              )}
+              <button className="text-purple-600 hover:text-purple-700 focus:text-purple-700 active:text-purple-800 duration-200 transition ease-in-out">
                 Forgot password?
               </button>
             </div>

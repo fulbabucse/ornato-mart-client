@@ -5,11 +5,14 @@ import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
 import { useQuery } from "@tanstack/react-query";
+import { useAdmin } from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContexts);
   const { setSearch } = useContext(ProductsContext);
+
+  const [isAdmin] = useAdmin(user?.email);
 
   const { data: mensSubCategory = [] } = useQuery({
     queryKey: ["men"],
@@ -337,11 +340,13 @@ const Navbar = () => {
                     )}
                   </li>
 
-                  <li className="list-none">
-                    <Link to="/dashboard">
-                      <h5>Dashboard</h5>
-                    </Link>
-                  </li>
+                  {isAdmin && (
+                    <li className="list-none">
+                      <Link to="/dashboard">
+                        <h5>Dashboard</h5>
+                      </Link>
+                    </li>
+                  )}
 
                   <div className="flex justify-center mt-6 lg:flex lg:mt-0 lg:-mx-2">
                     <div>

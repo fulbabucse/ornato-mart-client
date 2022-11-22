@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AddCategories from "../../Dashboard/Categories/AddCategories";
 import Categories from "../../Dashboard/Categories/Categories";
 import Dashboard from "../../Dashboard/Dashboard/Dashboard";
+import AllUsers from "../../Dashboard/Users/AllUsers";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import Root from "../../layouts/Root";
 import About from "../../pages/About/About";
@@ -13,6 +14,7 @@ import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
 import Login from "../../pages/User/Login/Login";
 import Profile from "../../pages/User/Profile/Profile";
 import Register from "../../pages/User/Register/Register";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -53,16 +55,43 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <AdminRoute>
+        <DashboardLayout></DashboardLayout>
+      </AdminRoute>
+    ),
     children: [
-      { path: "/dashboard", element: <Dashboard></Dashboard> },
+      {
+        path: "/dashboard",
+        element: (
+          <AdminRoute>
+            <Dashboard></Dashboard>
+          </AdminRoute>
+        ),
+      },
       {
         path: "/dashboard/all-categories",
-        element: <Categories></Categories>,
+        element: (
+          <AdminRoute>
+            <Categories></Categories>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/add-categories",
-        element: <AddCategories></AddCategories>,
+        element: (
+          <AdminRoute>
+            <AddCategories></AddCategories>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/all-users",
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
     ],
   },

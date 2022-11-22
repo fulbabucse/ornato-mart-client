@@ -12,9 +12,9 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`https://ornato-mart-server.vercel.app/cart?email=${user?.email}`, {
+    fetch(`http://localhost:5000/cart?email=${user?.email}`, {
       headers: {
-        authorization: `Bearer ${localStorage.getItem("ornato-token")}`,
+        authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
       },
     })
       .then((res) => {
@@ -32,8 +32,11 @@ const Orders = () => {
   const handleDeleteProduct = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
-      fetch(`https://ornato-mart-server.vercel.app/cart/${id}`, {
+      fetch(`http://localhost:5000/cart/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
+        },
       })
         .then((res) => res.json())
         .then((data) => {

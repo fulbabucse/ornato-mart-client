@@ -20,7 +20,7 @@ const ProductsProvider = ({ children }) => {
 
     const newProduct = { ...product, email };
 
-    fetch("https://ornato-mart-server.vercel.app/cart", {
+    fetch("http://localhost:5000/cart", {
       method: "POST",
       headers: {
         "content-type": "application/json",
