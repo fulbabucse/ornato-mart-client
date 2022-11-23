@@ -39,34 +39,34 @@ const AllUsers = () => {
       <h1 className="text-xl lg:text-2xl font-semibold text-gray-700 text-center my-4">
         Users
       </h1>
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full">
-                <thead class="bg-white border-b">
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full">
+                <thead className="bg-white border-b">
                   <tr>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       No
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Email
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Role
                     </th>
@@ -76,18 +76,18 @@ const AllUsers = () => {
                   {users?.map((user, index) => (
                     <tr
                       key={user?._id}
-                      class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                      className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
                     >
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {index + 1}
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {user?.name}
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                         {user?.email}
                       </td>
-                      <td class="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">
                         {user?.role === "admin" ? (
                           <button className="border text-white border-purple-500 bg-purple-500 hover:bg-purple-600 transition-colors duration-200 w-28 px-1 py-1 text-xs lg:text-xl lg:w-40 font-semibold rounded-sm text-opacity-90 hover:text-opacity-100">
                             Remove Admin

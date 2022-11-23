@@ -95,7 +95,7 @@ const DashboardLayout = () => {
                             All Products
                           </Link>
                           <Link
-                            to="/dashboard/add-categories"
+                            to="/dashboard/add-product"
                             className="flex items-center text-sm py-4 pl-12 pr-6 h-6 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
                           >
                             Add Product

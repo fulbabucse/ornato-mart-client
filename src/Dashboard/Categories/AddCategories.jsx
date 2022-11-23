@@ -74,7 +74,7 @@ const AddCategories = () => {
                 aria-label="Default select example"
               >
                 <option selected>Select One Category</option>
-                {categories.map((category) => (
+                {categories?.map((category) => (
                   <option key={category?.name} value={category?.name}>
                     {category?.name}
                   </option>

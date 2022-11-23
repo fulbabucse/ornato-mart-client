@@ -4,7 +4,7 @@ const Dashboard = () => {
   return (
     <div className="mt-4">
       <marquee
-        class="text-2xl font-semibold text-primaryColor"
+        className="text-2xl font-semibold text-primaryColor"
         behavior=""
         direction=""
       >
