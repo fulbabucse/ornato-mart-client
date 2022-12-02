@@ -94,24 +94,6 @@ const Register = () => {
       });
   };
 
-  // const handleUpdateUser = (name, photoLink) => {
-  //   const userInfo = {
-  //     displayName: name,
-  //     photoURL: photoLink,
-  //   };
-  //   updateUserProfile(userInfo)
-  //     .then(() => {})
-  //     .catch((err) => console.error(err));
-  // };
-
-  // const handleEmailVerification = () => {
-  //   verifyUserEmail()
-  //     .then(() => {
-  //       toast.success("Please check your email and verify");
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
-
   return (
     <section>
       <div className="container px-6 py-6 h-full">

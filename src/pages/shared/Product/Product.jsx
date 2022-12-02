@@ -4,13 +4,32 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const { id, title, discountPercentage, price, rating, thumbnail } = product;
+  const {
+    _id,
+    price,
+    brand_name,
+    category_name,
+    location,
+    product_color,
+    product_discount,
+    product_image,
+    product_main_materials,
+    product_name,
+    product_rating,
+    product_size,
+    product_stock_size,
+    product_warranty,
+    seller_name,
+    service_type,
+    subCategory_name,
+  } = product;
 
-  const newPrice = price - (price * discountPercentage) / 100;
+  console.log(product);
+  const newPrice = price - (price * parseInt(product_discount)) / 100;
 
   return (
     <div>
-      <Link to={`/category/product/${id}`}>
+      <Link to={`/category/product/${_id}`}>
         <div className="rounded-lg h-full shadow-lg hover:shadow-2xl transition-all duration-200 bg-white">
           <a
             className="product__image"
@@ -19,20 +38,20 @@ const Product = ({ product }) => {
           >
             <img
               className="rounded-t-lg product-img"
-              src={thumbnail}
-              alt={title}
+              src={product_image}
+              alt={product_name}
             />
           </a>
           <div className="p-6">
             <h5 className="text-gray-700 text-md font-bold mb-2 capitalize">
-              {title}
+              {product_name}
             </h5>
             <div className="text-lg font-semibold">
               <div>
                 <p>${newPrice.toFixed(2)}</p>
                 <div className="flex items-center gap-2 text-sm">
                   <del className="text-gray-500">{price}</del>
-                  <p className="text-orange-600">({discountPercentage}%)</p>
+                  <p className="text-orange-600">({product_discount}%)</p>
                 </div>
               </div>
               <div className="flex items-center gap-1 text-sm text-orange-300">
@@ -43,7 +62,7 @@ const Product = ({ product }) => {
                   <FaStar></FaStar>
                   <FaStar></FaStar>
                 </div>
-                <p className="text-gray-700">({rating})</p>
+                <p className="text-gray-700">({product_rating})</p>
               </div>
             </div>
           </div>

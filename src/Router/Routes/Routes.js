@@ -6,10 +6,8 @@ import AddProduct from "../../Dashboard/Products/AddProduct";
 import AllUsers from "../../Dashboard/Users/AllUsers";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import Root from "../../layouts/Root";
-import About from "../../pages/About/About";
 import Home from "../../pages/Home/Home/Home";
 import Orders from "../../pages/Orders/Orders";
-import Products from "../../pages/Products/Products/Products";
 import Error from "../../pages/shared/Error/Error";
 import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
 import Login from "../../pages/User/Login/Login";
@@ -30,7 +28,7 @@ export const router = createBrowserRouter([
       {
         path: "/category/product/:id",
         loader: ({ params }) =>
-          fetch(`https://dummyjson.com/products/${params.id}`),
+          fetch(`http://localhost:5000/product/${params.id}`),
         element: <ProductDetails></ProductDetails>,
       },
       {

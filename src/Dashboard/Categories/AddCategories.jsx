@@ -75,7 +75,7 @@ const AddCategories = () => {
               >
                 <option selected>Select One Category</option>
                 {categories?.map((category) => (
-                  <option key={category?.name} value={category?.name}>
+                  <option key={category?.name} defaultValue={category?.name}>
                     {category?.name}
                   </option>
                 ))}

@@ -8,6 +8,7 @@ import { AuthContexts } from "../AuthProvider/AuthProvider";
 export const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
+  const [count, setCount] = useState(0);
   const [search, setSearch] = useState("");
   const { user } = useContext(AuthContexts);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -41,6 +42,8 @@ const ProductsProvider = ({ children }) => {
     setTotalPrice,
     search,
     setSearch,
+    count,
+    setCount,
   };
   return (
     <ProductsContext.Provider value={productInfo}>
