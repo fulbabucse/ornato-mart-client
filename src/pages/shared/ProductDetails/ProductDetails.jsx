@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "../../../assets/styles.css";
 import {
   FaStar,
@@ -226,9 +226,11 @@ const ProductDetails = () => {
         <div className="space-y-2 border border-gray-200 rounded-md mt-4 p-3">
           <div className="">
             <small>Sold by</small>
-            <h3 className="text-xl font-semibold text-gray-700">
-              {seller_name}
-            </h3>
+            <Link to={`/shop/${seller_name}`}>
+              <h3 className="text-xl font-semibold text-gray-700">
+                {seller_name}
+              </h3>
+            </Link>
           </div>
           <hr />
           <div className="flex justify-between">

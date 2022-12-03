@@ -11,6 +11,7 @@ import CategoryProducts from "../../pages/Home/Products/CategoryProducts";
 import Orders from "../../pages/Orders/Orders";
 import Error from "../../pages/shared/Error/Error";
 import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
+import Shop from "../../pages/shared/Shop/Shop";
 import Login from "../../pages/User/Login/Login";
 import Profile from "../../pages/User/Profile/Profile";
 import Register from "../../pages/User/Register/Register";
@@ -31,6 +32,12 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/product/${params.id}`),
         element: <ProductDetails></ProductDetails>,
+      },
+      {
+        path: "/shop/:shopName",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/sellers/${params.shopName}`),
+        element: <Shop></Shop>,
       },
       {
         path: "orders",
