@@ -24,7 +24,6 @@ const Product = ({ product }) => {
     subCategory_name,
   } = product;
 
-  console.log(product);
   const newPrice = price - (price * parseInt(product_discount)) / 100;
 
   return (

@@ -7,6 +7,7 @@ import AllUsers from "../../Dashboard/Users/AllUsers";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import Root from "../../layouts/Root";
 import Home from "../../pages/Home/Home/Home";
+import CategoryProducts from "../../pages/Home/Products/CategoryProducts";
 import Orders from "../../pages/Orders/Orders";
 import Error from "../../pages/shared/Error/Error";
 import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
@@ -38,6 +39,12 @@ export const router = createBrowserRouter([
             <Orders></Orders>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/category/:categoryName",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/sub_category/${params.categoryName}`),
+        element: <CategoryProducts></CategoryProducts>,
       },
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },
