@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="relative z-10 bg-white mt-10 lg:pt-10">
+    <footer className="max-w-screen-xl mx-auto relative z-10 bg-white mt-10 lg:pt-10">
       <div className="container mx-auto">
-        <div className="-mx-4 flex flex-wrap">
+        <div className="flex flex-wrap">
           <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="mb-10 w-full">
               <Link to="/">
@@ -34,7 +34,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+          <div className="px-4 sm:w-1/2 lg:w-2/12">
             <div className="mb-10 w-full">
               <h4 className="text-dark mb-9 text-lg font-semibold">
                 Resources
@@ -75,7 +75,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+          <div className="px-4 sm:w-1/2 lg:w-2/12">
             <div className="mb-10 w-full">
               <h4 className="text-dark mb-9 text-lg font-semibold">Company</h4>
               <ul>
@@ -114,7 +114,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+          <div className="px-4 sm:w-1/2 lg:w-2/12">
             <div className="mb-10 w-full">
               <h4 className="text-dark mb-9 text-lg font-semibold">
                 Quick Links
@@ -155,7 +155,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
+          <div className="px-4 sm:w-1/2 lg:w-3/12">
             <div className="mb-10 w-full">
               <h4 className="text-dark mb-9 text-lg font-semibold">
                 Follow Us On

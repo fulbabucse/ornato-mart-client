@@ -1,7 +1,8 @@
 import React from "react";
 import "../../../assets/styles.css";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AiOutlineStar } from "react-icons/ai";
 
 const Product = ({ product }) => {
   const {
@@ -25,6 +26,22 @@ const Product = ({ product }) => {
   } = product;
 
   const newPrice = price - (price * parseInt(product_discount)) / 100;
+
+  const ratingStar = Array.from({ length: 5 }, (_, i) => {
+    let number = i + 0.5;
+
+    return (
+      <span key={i}>
+        {product_rating >= i + 1 ? (
+          <FaStar />
+        ) : product_rating >= number ? (
+          <FaStarHalfAlt />
+        ) : (
+          <AiOutlineStar />
+        )}
+      </span>
+    );
+  });
 
   return (
     <div>
@@ -54,13 +71,7 @@ const Product = ({ product }) => {
                 </div>
               </div>
               <div className="flex items-center gap-1 text-sm text-orange-300">
-                <div className="flex">
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                </div>
+                <div className="flex">{ratingStar}</div>
                 <p className="text-gray-700">({product_rating})</p>
               </div>
             </div>

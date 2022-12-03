@@ -6,23 +6,22 @@ import {
   FaLocationArrow,
   FaTruckMoving,
   FaFileInvoiceDollar,
+  FaStarHalfAlt,
 } from "react-icons/fa";
+import { AiOutlineStar } from "react-icons/ai";
 import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
+import ReviewForm from "./ReviewForm";
 
 const ProductDetails = () => {
   const { handleAddToCart } = useContext(ProductsContext);
   const { count, setCount } = useContext(ProductsContext);
   const product = useLoaderData();
   const {
-    _id,
     price,
     brand_name,
     category_name,
-    location,
-    product_color,
     product_discount,
     product_image,
-    product_main_materials,
     product_name,
     product_rating,
     product_size,
@@ -43,13 +42,29 @@ const ProductDetails = () => {
     setCount(count + 1);
   };
 
+  const ratingStar = Array.from({ length: 5 }, (_, i) => {
+    let number = i + 0.5;
+
+    return (
+      <span key={i}>
+        {product_rating >= i + 1 ? (
+          <FaStar />
+        ) : product_rating >= number ? (
+          <FaStarHalfAlt />
+        ) : (
+          <AiOutlineStar />
+        )}
+      </span>
+    );
+  });
+
   return (
     <div className="product-container max-w-screen-xl mx-auto">
       <div className="flex flex-col lg:flex-row gap-6">
-        <div style={{ width: "340px", height: "240px", borderRadius: "5px" }}>
+        <div className="lg:w-[340px] lg:h-[400px]">
           <a data-mdb-ripple="true" data-mdb-ripple-color="orange">
             <img
-              className="rounded-md"
+              className="rounded-md lg:w-[340px] lg:h-[400px]"
               src={product_image}
               alt={product_name}
             />
@@ -62,13 +77,7 @@ const ProductDetails = () => {
           <div>
             <div>
               <div className="flex items-center gap-1 text-sm text-orange-300">
-                <div className="flex">
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                  <FaStar></FaStar>
-                </div>
+                <div className="flex">{ratingStar}</div>
                 <p className="text-gray-700">({product_rating})</p>
               </div>
               <p className="text-gray-500 text-sm">
@@ -83,7 +92,7 @@ const ProductDetails = () => {
               </p>
               <hr className="my-3" />
               <p className="text-2xl font-semibold text-orange-500">
-                ${newPrice.toFixed(2)}
+                ৳{newPrice.toFixed(2)}
               </p>
 
               <div className="flex items-center gap-1 text-sm">
@@ -111,33 +120,33 @@ const ProductDetails = () => {
                   </span>
                 </p>
 
-                <div class="flex items-center gap-5">
+                <div className="flex items-center gap-5">
                   <label
-                    for="custom-input-number"
-                    class="text-gray-500 text-sm"
+                    htmlFor="custom-input-number"
+                    className="text-gray-500 text-sm"
                   >
                     Quantity
                   </label>
-                  <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
+                  <div className="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
                     <button
                       onClick={handleDecrement}
                       disabled={count === 0}
-                      class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+                      className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
                     >
-                      <span class="m-auto text-2xl font-thin">−</span>
+                      <span className="m-auto text-2xl font-thin">−</span>
                     </button>
                     <p
                       type="number"
-                      class="focus:outline-none text-center px-2 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  flex items-center text-gray-700  outline-none"
+                      className="focus:outline-none text-center px-2 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  flex items-center text-gray-700  outline-none"
                     >
                       {count}
                     </p>
                     <button
                       onClick={handleIncrement}
                       disabled={count == product_stock_size}
-                      class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
+                      className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
                     >
-                      <span class="m-auto text-2xl font-thin">+</span>
+                      <span className="m-auto text-2xl font-thin">+</span>
                     </button>
                   </div>
                 </div>
@@ -155,8 +164,8 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div>
-        <div className="space-y-2 border border-gray-400 p-3 rounded-md">
+      <div className="text-sm">
+        <div className="space-y-2 border border-gray-200 p-3 rounded-md">
           <p className="text-xl font-semibold text-gray-700">Delivery</p>
           <hr />
           <div className="flex items-center gap-1">
@@ -173,7 +182,7 @@ const ProductDetails = () => {
               </div>
               <p className="text-xs ml-6">2-5 (days)</p>
             </div>
-            <p className="text-lg font-semibold">$10</p>
+            <p className="text-lg font-semibold">৳50</p>
           </div>
           <div className="flex items-center gap-1">
             <FaFileInvoiceDollar></FaFileInvoiceDollar>
@@ -187,11 +196,11 @@ const ProductDetails = () => {
               alt=""
             />
 
-            <p>{product_warranty} Warranty</p>
+            <p>{product_warranty}</p>
           </div>
         </div>
-        <div className="space-y-2 border border-gray-400 rounded-md mt-4 p-3">
-          <div className="-space-y-2">
+        <div className="space-y-2 border border-gray-200 rounded-md mt-4 p-3">
+          <div className="">
             <small>Sold by</small>
             <h3 className="text-xl font-semibold text-gray-700">
               {seller_name}
@@ -201,18 +210,23 @@ const ProductDetails = () => {
           <div className="flex justify-between">
             <div className="text-center">
               <small>Positive Seller Rating</small>
-              <h3 className="text-3xl font-semibold text-gray-700">99%</h3>
+              <h3 className="text-2xl font-semibold text-gray-700">99%</h3>
             </div>
             <div className="text-center">
               <small>Shipping on Time</small>
-              <h3 className="text-3xl font-semibold text-gray-700">98%</h3>
+              <h3 className="text-2xl font-semibold text-gray-700">98%</h3>
             </div>
             <div className="text-center">
               <small>Response Rate</small>
-              <h3 className="text-3xl font-semibold text-gray-700">100%</h3>
+              <h3 className="text-2xl font-semibold text-gray-700">100%</h3>
             </div>
           </div>
         </div>
+      </div>
+      <div className="lg:mt-10">
+        <h4 className="font-medium">Review & Rating of {product_name}</h4>
+        <p className="text-sm">Total 10 Review</p>
+        <ReviewForm product={product}></ReviewForm>
       </div>
     </div>
   );
