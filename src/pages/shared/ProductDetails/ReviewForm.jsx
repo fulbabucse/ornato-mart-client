@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 
-const ReviewForm = ({ product }) => {
+const ReviewForm = ({ product, refetch }) => {
   const { user } = useContext(AuthContexts);
   const {
     register,
@@ -67,12 +67,10 @@ const ReviewForm = ({ product }) => {
           .then((data) => {
             if (data.acknowledged) {
               toast.success("successfully reviewed");
+              refetch();
             }
           });
       });
-
-    console.log(formData);
-    console.log(userData);
   };
 
   return (

@@ -11,12 +11,18 @@ import {
 import { AiOutlineStar } from "react-icons/ai";
 import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
 import ReviewForm from "./ReviewForm";
+import { useQuery } from "@tanstack/react-query";
+import ProductReview from "../ProductReview/ProductReview";
+import SimilarProducts from "./SimilarProducts";
+import Spinner from "../../../Components/Spinner";
 
 const ProductDetails = () => {
   const { handleAddToCart } = useContext(ProductsContext);
   const { count, setCount } = useContext(ProductsContext);
   const product = useLoaderData();
+
   const {
+    _id,
     price,
     brand_name,
     category_name,
@@ -31,6 +37,24 @@ const ProductDetails = () => {
     service_type,
     subCategory_name,
   } = product;
+
+  const {
+    data: reviews = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: [],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/reviews?productId=${_id}`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
   const newPrice = price - (price * parseInt(product_discount)) / 100;
 
   const newProduct = { ...product, newPrice };
@@ -224,9 +248,24 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="lg:mt-10">
-        <h4 className="font-medium">Review & Rating of {product_name}</h4>
-        <p className="text-sm">Total 10 Review</p>
-        <ReviewForm product={product}></ReviewForm>
+        <h4 className="text-xl text-baseColor font-medium">
+          Review & Rating of {product_name}
+        </h4>
+        <ReviewForm product={product} refetch={refetch}></ReviewForm>
+        <p className="text-sm border border-gray-300 p-3 rounded-sm">
+          Total ({reviews.length}) Review
+        </p>
+        <div>
+          {reviews?.map((review) => (
+            <ProductReview key={review?._id} review={review}></ProductReview>
+          ))}
+        </div>
+      </div>
+      <div className="lg:ml-10 lg:mt-10 lg:w-3/5">
+        <SimilarProducts
+          category_name={category_name}
+          subCategory_name={subCategory_name}
+        ></SimilarProducts>
       </div>
     </div>
   );
