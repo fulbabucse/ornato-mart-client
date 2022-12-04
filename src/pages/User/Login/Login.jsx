@@ -57,7 +57,7 @@ const Login = () => {
       <div className="container px-6 py-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="flex justify-center md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-            <img src={logo} className="w-full lg:w-3/5" alt="Phone image" />
+            <img src={logo} className="w-full lg:w-3/5" alt="Phone" />
           </div>
           <div className="w-full md:w-8/12 lg:w-5/12 lg:ml-20">
             <div className="mb-4">
@@ -128,7 +128,7 @@ const Login = () => {
               <button
                 onClick={handleGoogleSignIn}
                 className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3 bg-amber-500"
-                role="button"
+                type="button"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >
@@ -139,7 +139,7 @@ const Login = () => {
               <button
                 className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
                 style={{ backgroundColor: "#3b5998" }}
-                role="button"
+                type="button"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >
@@ -150,7 +150,7 @@ const Login = () => {
               <button
                 className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
                 style={{ backgroundColor: "#55acee" }}
-                role="button"
+                type="button"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >

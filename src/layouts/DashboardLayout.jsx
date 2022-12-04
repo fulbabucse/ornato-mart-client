@@ -35,7 +35,7 @@ const DashboardLayout = () => {
                   <div className="w-full h-full" id="sidenavExample">
                     <ul className="relative">
                       <li className="relative" id="sidenavEx1">
-                        <a
+                        <button
                           className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out cursor-pointer"
                           data-mdb-ripple="true"
                           data-mdb-ripple-color="dark"
@@ -47,7 +47,7 @@ const DashboardLayout = () => {
                           <FaListUl className="mr-2"></FaListUl>
                           <span>Categories</span>
                           <FaAngleDown className="text-xl ml-auto"></FaAngleDown>
-                        </a>
+                        </button>
                         <ul
                           className="relative accordion-collapse collapse"
                           id="collapseSidenavEx1"
@@ -69,7 +69,7 @@ const DashboardLayout = () => {
                         </ul>
                       </li>
                       <li className="relative" id="sidenavEx1">
-                        <a
+                        <button
                           className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out cursor-pointer"
                           data-mdb-ripple="true"
                           data-mdb-ripple-color="dark"
@@ -81,7 +81,7 @@ const DashboardLayout = () => {
                           <FaProductHunt className="mr-2"></FaProductHunt>
                           <span>Products</span>
                           <FaAngleDown className="text-xl ml-auto"></FaAngleDown>
-                        </a>
+                        </button>
                         <ul
                           className="relative accordion-collapse collapse"
                           id="products"
@@ -103,7 +103,7 @@ const DashboardLayout = () => {
                         </ul>
                       </li>
                       <li className="relative" id="sidenavEx2">
-                        <a
+                        <button
                           className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out cursor-pointer"
                           data-mdb-ripple="true"
                           data-mdb-ripple-color="dark"
@@ -115,7 +115,7 @@ const DashboardLayout = () => {
                           <FaUsers className="mr-2"></FaUsers>
                           <span>Users</span>
                           <FaAngleDown className="text-xl ml-auto"></FaAngleDown>
-                        </a>
+                        </button>
                         <ul
                           className="relative accordion-collapse collapse"
                           id="users"

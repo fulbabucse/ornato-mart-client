@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FaCartArrowDown, FaSearch, FaTh, FaTimes } from "react-icons/fa";
+import { FaSearch, FaTh, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
@@ -102,7 +102,7 @@ const Header = () => {
                             <img
                               className="w-10 h-10 rounded-full text-xs"
                               src={user?.photoURL || UserThumb}
-                              alt="User Picture"
+                              alt="User"
                             />
                           </button>
                           <ul

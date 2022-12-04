@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import { useReducer } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import toast from "react-hot-toast";
@@ -8,10 +9,23 @@ import { AuthContexts } from "../AuthProvider/AuthProvider";
 export const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
   const [search, setSearch] = useState("");
   const { user } = useContext(AuthContexts);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const initialState = 0;
+  const reducer = (state, action) => {
+    if (action.type === "Increment") {
+      return state + 1;
+    } else if (action.type === "Decrement") {
+      return state - 1;
+    } else {
+      return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const email = user?.email;
   const handleAddToCart = (product) => {
     if (!user?.email) {
@@ -42,8 +56,8 @@ const ProductsProvider = ({ children }) => {
     setTotalPrice,
     search,
     setSearch,
-    count,
-    setCount,
+    state,
+    dispatch,
   };
   return (
     <ProductsContext.Provider value={productInfo}>

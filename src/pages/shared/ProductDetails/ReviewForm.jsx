@@ -11,25 +11,7 @@ const ReviewForm = ({ product, refetch }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const {
-    _id,
-    price,
-    brand_name,
-    category_name,
-    location,
-    product_color,
-    product_discount,
-    product_image,
-    product_main_materials,
-    product_name,
-    product_rating,
-    product_size,
-    product_stock_size,
-    product_warranty,
-    seller_name,
-    service_type,
-    subCategory_name,
-  } = product;
+  const { _id, product_name, subCategory_name } = product;
 
   const handleReviewProduct = (userData) => {
     const formData = new FormData();

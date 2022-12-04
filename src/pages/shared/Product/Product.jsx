@@ -8,21 +8,10 @@ const Product = ({ product }) => {
   const {
     _id,
     price,
-    brand_name,
-    category_name,
-    location,
-    product_color,
     product_discount,
     product_image,
-    product_main_materials,
     product_name,
     product_rating,
-    product_size,
-    product_stock_size,
-    product_warranty,
-    seller_name,
-    service_type,
-    subCategory_name,
   } = product;
 
   const newPrice = price - (price * parseInt(product_discount)) / 100;
@@ -47,7 +36,7 @@ const Product = ({ product }) => {
     <div>
       <Link to={`/category/product/${_id}`}>
         <div className="rounded-lg h-full shadow-lg hover:shadow-2xl transition-all duration-200 bg-white">
-          <a
+          <p
             className="product__image"
             data-mdb-ripple="true"
             data-mdb-ripple-color="orange"
@@ -57,7 +46,7 @@ const Product = ({ product }) => {
               src={product_image}
               alt={product_name}
             />
-          </a>
+          </p>
           <div className="p-6">
             <h5 className="text-gray-700 text-md font-bold mb-2 capitalize">
               {product_name}

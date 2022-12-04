@@ -1,16 +1,13 @@
-import React, { useContext, useState } from "react";
-import { FaCartArrowDown, FaSearch, FaTh, FaTimes } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaCartArrowDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
-import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
 import { useQuery } from "@tanstack/react-query";
 import { useAdmin } from "../../../hooks/useAdmin";
 
 const Navbar = () => {
-  const [navbar, setNavbar] = useState(false);
   const { user, userSignOut } = useContext(AuthContexts);
-  const { setSearch } = useContext(ProductsContext);
 
   const [isAdmin] = useAdmin(user?.email);
 
@@ -145,7 +142,7 @@ const Navbar = () => {
                   </svg>
                 </button>
                 <div
-                  className="dropdown-menu w-full mt-0 hidden shadow-lg bg-white absolute left-0 top-full"
+                  className="dropdown-menu w-full lg:w-4/5 mx-auto mt-0 hidden shadow-lg bg-white absolute left-0 top-full"
                   aria-labelledby="dropdownMenuButtonY"
                 >
                   <div className="px-6 lg:px-8 py-5">
@@ -157,7 +154,7 @@ const Navbar = () => {
 
                         {mensSubCategory?.map((menCategory) => (
                           <Link
-                            to={`/category/${menCategory?.category_id}`}
+                            to={`/sub-category/${menCategory?.category_id}`}
                             aria-current="true"
                             key={menCategory?._id}
                             className="block px-2 py-1 capitalize text-sm border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -172,7 +169,7 @@ const Navbar = () => {
                         </p>
                         {womensSubCategory?.map((womenCategory) => (
                           <Link
-                            to={`/category/${womenCategory?.category_id}`}
+                            to={`/sub-category/${womenCategory?.category_id}`}
                             aria-current="true"
                             key={womenCategory?._id}
                             className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -187,7 +184,7 @@ const Navbar = () => {
                         </p>
                         {electronicsDevices?.map((electronics) => (
                           <Link
-                            to={`/category/${electronics?.category_id}`}
+                            to={`/sub-category/${electronics?.category_id}`}
                             aria-current="true"
                             key={electronics?._id}
                             className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -202,7 +199,7 @@ const Navbar = () => {
                         </p>
                         {healthBeauty?.map((healths) => (
                           <Link
-                            to={`/category/${healths?.category_id}`}
+                            to={`/sub-category/${healths?.category_id}`}
                             aria-current="true"
                             key={healths?._id}
                             className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -217,7 +214,7 @@ const Navbar = () => {
                         </p>
                         {automotives?.map((automotive) => (
                           <Link
-                            to={`/category/${automotive?.category_id}`}
+                            to={`/sub-category/${automotive?.category_id}`}
                             aria-current="true"
                             key={automotive?._id}
                             className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -232,7 +229,7 @@ const Navbar = () => {
                         </p>
                         {electronicsAccessories?.map((accessories) => (
                           <Link
-                            to={`/category/${accessories?.category_id}`}
+                            to={`/sub-category/${accessories?.category_id}`}
                             aria-current="true"
                             key={accessories?._id}
                             className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -247,7 +244,7 @@ const Navbar = () => {
                         </p>
                         {homeAppliance?.map((home) => (
                           <Link
-                            to={`/category/${home?.category_id}`}
+                            to={`/sub-category/${home?.category_id}`}
                             aria-current="true"
                             key={home?._id}
                             className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -262,7 +259,7 @@ const Navbar = () => {
                         </p>
                         {babiesToyes?.map((babiesToy) => (
                           <Link
-                            to={`/category/${babiesToy?.category_id}`}
+                            to={`/sub-category/${babiesToy?.category_id}`}
                             aria-current="true"
                             key={babiesToy?._id}
                             className="block px-2 py-1 text-sm capitalize border-b border-gray-200 w-full hover:bg-primaryColor hover:text-white transition duration-150 ease-in-out"
@@ -309,7 +306,7 @@ const Navbar = () => {
                             <img
                               className="w-10 h-10 rounded-full text-xs"
                               src={user?.photoURL || UserThumb}
-                              alt="User Picture"
+                              alt="User"
                             />
                           </button>
                           <ul

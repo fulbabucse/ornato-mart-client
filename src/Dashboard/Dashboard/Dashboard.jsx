@@ -3,13 +3,9 @@ import React from "react";
 const Dashboard = () => {
   return (
     <div className="mt-4">
-      <marquee
-        className="text-2xl font-semibold text-primaryColor"
-        behavior=""
-        direction=""
-      >
+      <h4 className="text-2xl font-semibold text-primaryColor">
         Ornato Mart Admin Dashboard
-      </marquee>
+      </h4>
     </div>
   );
 };

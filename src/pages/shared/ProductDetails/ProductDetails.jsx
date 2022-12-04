@@ -18,7 +18,7 @@ import Spinner from "../../../Components/Spinner";
 
 const ProductDetails = () => {
   const { handleAddToCart } = useContext(ProductsContext);
-  const { count, setCount } = useContext(ProductsContext);
+  const { state, dispatch } = useContext(ProductsContext);
   const product = useLoaderData();
 
   const {
@@ -37,7 +37,6 @@ const ProductDetails = () => {
     service_type,
     subCategory_name,
   } = product;
-
   const {
     data: reviews = [],
     refetch,
@@ -59,13 +58,6 @@ const ProductDetails = () => {
 
   const newProduct = { ...product, newPrice };
 
-  const handleDecrement = () => {
-    setCount(count - 1);
-  };
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
   const ratingStar = Array.from({ length: 5 }, (_, i) => {
     let number = i + 0.5;
 
@@ -86,13 +78,13 @@ const ProductDetails = () => {
     <div className="product-container max-w-screen-xl mx-auto">
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="lg:w-[340px] lg:h-[400px]">
-          <a data-mdb-ripple="true" data-mdb-ripple-color="orange">
+          <p data-mdb-ripple="true" data-mdb-ripple-color="orange">
             <img
               className="rounded-md lg:w-[340px] lg:h-[400px]"
               src={product_image}
               alt={product_name}
             />
-          </a>
+          </p>
         </div>
         <div className="font-medium">
           <h3 className="text-xl font-bold text-gray-700 capitalize">
@@ -111,7 +103,10 @@ const ProductDetails = () => {
                 Category:
                 <span className="text-gray-800">
                   {" "}
-                  {category_name} | {subCategory_name}
+                  <Link to={`/category/${category_name}`}>
+                    {category_name}
+                  </Link>{" "}
+                  | {subCategory_name}
                 </span>
               </p>
               <hr className="my-3" />
@@ -153,8 +148,8 @@ const ProductDetails = () => {
                   </label>
                   <div className="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
                     <button
-                      onClick={handleDecrement}
-                      disabled={count === 0}
+                      onClick={() => dispatch({ type: "Decrement" })}
+                      disabled={state === 0}
                       className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
                     >
                       <span className="m-auto text-2xl font-thin">−</span>
@@ -163,11 +158,11 @@ const ProductDetails = () => {
                       type="number"
                       className="focus:outline-none text-center px-2 bg-gray-300 font-semibold text-md hover:text-black focus:text-black  flex items-center text-gray-700  outline-none"
                     >
-                      {count}
+                      {state}
                     </p>
                     <button
-                      onClick={handleIncrement}
-                      disabled={count == product_stock_size}
+                      onClick={() => dispatch({ type: "Increment" })}
+                      disabled={state === product_stock_size}
                       className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
                     >
                       <span className="m-auto text-2xl font-thin">+</span>

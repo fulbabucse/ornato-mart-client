@@ -9,6 +9,7 @@ import Root from "../../layouts/Root";
 import Home from "../../pages/Home/Home/Home";
 import CategoryProducts from "../../pages/Home/Products/CategoryProducts";
 import Orders from "../../pages/Orders/Orders";
+import Category from "../../pages/shared/Category/Category";
 import Error from "../../pages/shared/Error/Error";
 import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
 import Shop from "../../pages/shared/Shop/Shop";
@@ -48,10 +49,16 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/category/:categoryName",
+        path: "/sub-category/:categoryName",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/sub_category/${params.categoryName}`),
         element: <CategoryProducts></CategoryProducts>,
+      },
+      {
+        path: "/category/:name",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/category/${params.name}`),
+        element: <Category></Category>,
       },
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },
