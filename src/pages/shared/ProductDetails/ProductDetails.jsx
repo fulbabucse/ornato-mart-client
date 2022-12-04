@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { json, Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "../../../assets/styles.css";
 import {
   FaStar,
@@ -190,7 +190,7 @@ const ProductDetails = () => {
                     </p>
                     <button
                       onClick={() => dispatch({ type: "Increment" })}
-                      disabled={state === product_stock_size}
+                      disabled={state == product_stock_size}
                       className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
                     >
                       <span className="m-auto text-2xl font-thin">+</span>

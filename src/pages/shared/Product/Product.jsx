@@ -14,7 +14,6 @@ const Product = ({ product }) => {
     product_rating,
   } = product;
 
-
   const newPrice = price - (price * parseInt(product_discount)) / 100;
 
   const ratingStar = Array.from({ length: 5 }, (_, i) => {
@@ -54,7 +53,7 @@ const Product = ({ product }) => {
             </h5>
             <div className="text-lg font-semibold">
               <div>
-                <p>${newPrice.toFixed(2)}</p>
+                <p className="text-primaryColor">${newPrice.toFixed(2)}</p>
                 <div className="flex items-center gap-2 text-sm">
                   <del className="text-gray-500">{price}</del>
                   <p className="text-orange-600">({product_discount}%)</p>

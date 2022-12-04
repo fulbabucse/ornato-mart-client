@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Spinner from "../../Components/Spinner";
 import { AuthContexts } from "../../contexts/AuthProvider/AuthProvider";
 import CartProduct from "./CartProduct/CartProduct";
 
 const Orders = () => {
   const { user } = useContext(AuthContexts);
 
-  const { data: orders } = useQuery({
+  const { data: orders = [], isLoading } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await fetch(
@@ -38,6 +39,43 @@ const Orders = () => {
         .catch((err) => console.error(err));
     }
   };
+
+  const price = [];
+  orders.map((order) => {
+    return price.push(parseInt(order.price));
+  });
+
+  const withOutTax = price?.reduce((total, value) => {
+    return total + value;
+  }, 0);
+  console.log(withOutTax);
+
+  const shipping = 50;
+  const tax = withOutTax * 0.05;
+
+  const subTotal = tax + withOutTax;
+
+  const totalPrice = withOutTax + shipping + tax;
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
+
+  /*
+    const price = [];
+  orders.map((order) => {
+    price.push(parseInt(order.price));
+  });
+
+  const subTotalPrice = price.reduce((total, value) => {
+    return total + value;
+  });
+
+  const shipping = 10;
+  const tax = subTotalPrice * 0.04;
+
+  const totalPrice = subTotalPrice + shipping + Math.ceil(tax);
+  */
 
   return (
     <div className="text-baseColor">
@@ -93,14 +131,14 @@ const Orders = () => {
                 <span className="font-semibold text-sm uppercase">
                   Items {orders.length}
                 </span>
-                <span className="font-semibold text-sm">590$</span>
+                <span className="font-semibold text-sm">৳{subTotal}</span>
               </div>
               <div>
                 <label className="font-medium inline-block mb-3 text-sm uppercase">
                   Shipping
                 </label>
-                <select className="block p-2 text-gray-600 w-full text-sm">
-                  <option>Standard shipping - $10.00</option>
+                <select className="block p-2 focus:outline-none border focus:border-primaryColor text-gray-600 w-full text-sm">
+                  <option>Standard shipping - ৳{shipping}</option>
                 </select>
               </div>
               <div className="py-10">
@@ -123,7 +161,7 @@ const Orders = () => {
               <div className="border-t mt-8">
                 <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Total cost</span>
-                  <span>$600</span>
+                  <span>৳{totalPrice}</span>
                 </div>
                 <button className="bg-primaryColor/80 font-semibold hover:bg-primaryColor py-3 text-sm text-white uppercase w-full">
                   Checkout
