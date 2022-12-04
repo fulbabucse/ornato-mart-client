@@ -8,6 +8,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import Root from "../../layouts/Root";
 import Home from "../../pages/Home/Home/Home";
 import CategoryProducts from "../../pages/Home/Products/CategoryProducts";
+import FlashSale from "../../pages/Home/Products/FlashSale";
 import Orders from "../../pages/Orders/Orders";
 import Category from "../../pages/shared/Category/Category";
 import Error from "../../pages/shared/Error/Error";
@@ -29,7 +30,13 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/category/product/:id",
+        path: "/product/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/product/${params.id}`),
+        element: <ProductDetails></ProductDetails>,
+      },
+      {
+        path: "/wow/flash-sale/product/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/product/${params.id}`),
         element: <ProductDetails></ProductDetails>,
@@ -59,6 +66,10 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.name}`),
         element: <Category></Category>,
+      },
+      {
+        path: "/wow/flash-sale",
+        element: <FlashSale></FlashSale>,
       },
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },

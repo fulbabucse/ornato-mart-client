@@ -14,6 +14,8 @@ const Product = ({ product }) => {
     product_rating,
   } = product;
 
+  console.log(product);
+
   const newPrice = price - (price * parseInt(product_discount)) / 100;
 
   const ratingStar = Array.from({ length: 5 }, (_, i) => {
@@ -34,7 +36,7 @@ const Product = ({ product }) => {
 
   return (
     <div>
-      <Link to={`/category/product/${_id}`}>
+      <Link to={`/product/${_id}`}>
         <div className="rounded-lg h-full shadow-lg hover:shadow-2xl transition-all duration-200 bg-white">
           <p
             className="product__image"

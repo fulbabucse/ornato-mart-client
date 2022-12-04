@@ -21,6 +21,8 @@ const ProductDetails = () => {
   const { state, dispatch } = useContext(ProductsContext);
   const product = useLoaderData();
 
+  console.log(product);
+
   const {
     _id,
     price,
@@ -37,12 +39,13 @@ const ProductDetails = () => {
     service_type,
     subCategory_name,
   } = product;
+
   const {
     data: reviews = [],
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: [],
+    queryKey: ["reviews", price],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/reviews?productId=${_id}`);
       const data = await res.json();
@@ -102,14 +105,13 @@ const ProductDetails = () => {
               <p className="text-sm text-gray-600 capitalize">
                 Category:
                 <span className="text-gray-800">
-                  {" "}
-                  <Link to={`/category/${category_name}`}>
+                  <Link className="mx-1" to={`/category/${category_name}`}>
                     {category_name}
-                  </Link>{" "}
+                  </Link>
                   | {subCategory_name}
                 </span>
               </p>
-              <hr className="my-3" />
+              <p className="border-b border-b-gray-300 my-3"></p>
               <p className="text-2xl font-semibold text-orange-500">
                 ৳{newPrice.toFixed(2)}
               </p>
@@ -118,7 +120,7 @@ const ProductDetails = () => {
                 <del className="text-gray-500">{price}</del>
                 <p className="text-orange-600">(-{product_discount}%)</p>
               </div>
-              <hr className="my-3" />
+              <p className="border-b border-b-gray-300 my-3"></p>
               <div className="space-y-1">
                 <p className="text-sm text-gray-600">
                   Stock: Only
@@ -131,7 +133,7 @@ const ProductDetails = () => {
                 <p className="text-sm flex items-center text-gray-600">
                   Wear Size:
                   <span className="ml-4 flex gap-3">
-                    {product_size.split(",").map((p) => (
+                    {product_size?.split(",")?.map((p) => (
                       <div className="border border-gray-300 hover:border-primaryColor focus:border-primaryColor py-1 px-2 rounded-md">
                         <button>{p}</button>
                       </div>
@@ -184,9 +186,9 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="text-sm">
-        <div className="space-y-2 border border-gray-200 p-3 rounded-md">
+        <div className="space-y-2 border border-gray-300 p-3 rounded-md">
           <p className="text-xl font-semibold text-gray-700">Delivery</p>
-          <hr />
+          <p className="border-b border-b-gray-300 my-3"></p>
           <div className="flex items-center gap-1">
             <FaLocationArrow className="text-gray-7"></FaLocationArrow>
             <p className="text-sm">
@@ -218,7 +220,7 @@ const ProductDetails = () => {
             <p>{product_warranty}</p>
           </div>
         </div>
-        <div className="space-y-2 border border-gray-200 rounded-md mt-4 p-3">
+        <div className="space-y-2 border border-gray-300 rounded-md mt-4 p-3">
           <div className="">
             <small>Sold by</small>
             <Link to={`/shop/${seller_name}`}>
@@ -227,7 +229,7 @@ const ProductDetails = () => {
               </h3>
             </Link>
           </div>
-          <hr />
+          <p className="border-b border-b-gray-300"></p>
           <div className="flex justify-between">
             <div className="text-center">
               <small>Positive Seller Rating</small>

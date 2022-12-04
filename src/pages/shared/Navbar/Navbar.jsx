@@ -272,7 +272,8 @@ const Navbar = () => {
                   </div>
                 </div>
               </li>
-              <div className="flex flex-col items-center transition-all duration-300 ease-in-out  text-gray-600 capitalize w-full dark:text-gray-300 lg:flex lg:-mx-4 lg:flex-row lg:items-center justify-end gap-10">
+
+              <div className="flex flex-col items-center transition-all duration-300 ease-in-out  text-gray-600 capitalize dark:text-gray-300 lg:flex lg:-mx-4 lg:flex-row lg:items-center justify-end gap-10 lg:absolute lg:right-10">
                 <div className="flex gap-4 lg:px-10 items-center">
                   <li className="list-none">
                     {user?.uid && (

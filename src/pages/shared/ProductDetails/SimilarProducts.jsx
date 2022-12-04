@@ -14,14 +14,14 @@ const SimilarProducts = ({ category_name, subCategory_name }) => {
     },
   });
 
-  const similarProducts = products.slice(0, 2);
+  const similarProducts = products.slice(0, 3);
 
   return (
     <div>
       <h1 className="text-xl mb-2 text-baseColor font-medium">
         Similar Products
       </h1>
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-3">
         {similarProducts?.map((product) => (
           <Product key={product?._id} product={product}></Product>
         ))}

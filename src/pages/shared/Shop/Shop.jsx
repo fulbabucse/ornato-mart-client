@@ -23,7 +23,7 @@ const Shop = () => {
     <div className="max-w-screen-xl mx-auto">
       <div class="bg-gradient-to-r from-violet-500 to-fuchsia-500 pb-1 pt-4 pl-4 mb-5">
         <div className="flex items-center gap-5 bg-white p-3 lg:w-2/5">
-          <div className="">
+          <div>
             <img
               className="border-r border-r-gray-400 w-20 h-20 pr-3"
               src="https://iconarchive.com/download/i77853/custom-icon-design/pretty-office-11/shop.ico"
@@ -46,7 +46,7 @@ const Shop = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {products?.map((product) => (
           <Product key={product?._id} product={product}></Product>
         ))}
