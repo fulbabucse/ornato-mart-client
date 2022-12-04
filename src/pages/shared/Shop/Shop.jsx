@@ -21,7 +21,7 @@ const Shop = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div class="bg-gradient-to-r from-violet-500 to-fuchsia-500 pb-1 pt-4 pl-4 mb-5">
+      <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 pb-1 pt-4 pl-4 mb-5">
         <div className="flex items-center gap-5 bg-white p-3 lg:w-2/5">
           <div>
             <img

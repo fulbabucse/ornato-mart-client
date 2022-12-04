@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { json, Link, useLoaderData } from "react-router-dom";
 import "../../../assets/styles.css";
 import {
   FaStar,
@@ -15,13 +15,13 @@ import { useQuery } from "@tanstack/react-query";
 import ProductReview from "../ProductReview/ProductReview";
 import SimilarProducts from "./SimilarProducts";
 import Spinner from "../../../Components/Spinner";
+import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
-  const { handleAddToCart } = useContext(ProductsContext);
+  const { user } = useContext(AuthContexts);
   const { state, dispatch } = useContext(ProductsContext);
   const product = useLoaderData();
-
-  console.log(product);
 
   const {
     _id,
@@ -59,7 +59,12 @@ const ProductDetails = () => {
 
   const newPrice = price - (price * parseInt(product_discount)) / 100;
 
-  const newProduct = { ...product, newPrice };
+  const newProduct = {
+    ...product,
+    newPrice,
+    quantity: state,
+    email: user?.email,
+  };
 
   const ratingStar = Array.from({ length: 5 }, (_, i) => {
     let number = i + 0.5;
@@ -76,6 +81,27 @@ const ProductDetails = () => {
       </span>
     );
   });
+
+  const handleAddToCart = (product) => {
+    if (!user) {
+      toast.error("Please Login or SignUp");
+      return;
+    }
+
+    fetch("http://localhost:5000/cart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Order Complete");
+        }
+      });
+  };
 
   return (
     <div className="product-container max-w-screen-xl mx-auto">

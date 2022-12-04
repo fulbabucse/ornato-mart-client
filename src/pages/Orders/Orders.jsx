@@ -1,33 +1,28 @@
-import React, { useContext, useState } from "react";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../contexts/AuthProvider/AuthProvider";
 import CartProduct from "./CartProduct/CartProduct";
 
 const Orders = () => {
-  const { user, userSignOut } = useContext(AuthContexts);
+  const { user } = useContext(AuthContexts);
 
-  const [orders, setOrders] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:5000/cart?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          return userSignOut();
+  const { data: orders } = useQuery({
+    queryKey: ["cart", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/cart?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
+          },
         }
-        return res.json();
-      })
-      .then((data) => {
-        setOrders(data);
-      })
-      .catch((err) => console.error(err));
-  }, [user?.email, userSignOut]);
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   const handleDeleteProduct = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
@@ -39,27 +34,21 @@ const Orders = () => {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            const restOrders = orders.filter((odr) => odr._id !== id);
-            toast.error("Orders cancel successfully");
-            setOrders(restOrders);
-          }
-        })
+        .then((data) => {})
         .catch((err) => console.error(err));
     }
   };
 
   return (
-    <div>
-      {orders.length > 0 ? (
+    <div className="text-baseColor">
+      {orders?.length > 0 ? (
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row shadow-md my-10">
             <div className="w-full lg:w-3/4 bg-white px-10 py-10">
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Products</h1>
                 <h2 className="font-semibold text-2xl">
-                  {orders.length} Items
+                  {orders?.length} Items
                 </h2>
               </div>
               <div className="flex mt-10 mb-5">
@@ -89,7 +78,7 @@ const Orders = () => {
 
               <Link
                 to="/"
-                className="flex items-center gap-2 w-40 font-semibold text-indigo-600 text-sm mt-10"
+                className="flex items-center gap-2 w-40 font-semibold text-primaryColor text-sm mt-10"
               >
                 <FaArrowLeft></FaArrowLeft>
                 Continue Shopping
@@ -136,7 +125,7 @@ const Orders = () => {
                   <span>Total cost</span>
                   <span>$600</span>
                 </div>
-                <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+                <button className="bg-primaryColor/80 font-semibold hover:bg-primaryColor py-3 text-sm text-white uppercase w-full">
                   Checkout
                 </button>
               </div>

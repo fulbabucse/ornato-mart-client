@@ -36,7 +36,7 @@ const Products = () => {
           <div className="w-32">
             <select
               onChange={(e) => setIsSort(e.target.value)}
-              class="form-select focus:shadow-none appearance-none
+              className="form-select focus:shadow-none appearance-none
       block
       px-3
       py-1.5

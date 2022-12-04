@@ -14,7 +14,6 @@ const Product = ({ product }) => {
     product_rating,
   } = product;
 
-  console.log(product);
 
   const newPrice = price - (price * parseInt(product_discount)) / 100;
 

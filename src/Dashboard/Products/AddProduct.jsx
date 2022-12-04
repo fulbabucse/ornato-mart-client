@@ -11,7 +11,6 @@ const AddProduct = () => {
   } = useForm();
 
   const handleFormSubmit = (productData) => {
-    console.log(productData);
     const formData = new FormData();
     formData.append("image", productData.product_sample[0]);
 

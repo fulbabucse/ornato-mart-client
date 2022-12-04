@@ -51,7 +51,7 @@ const Timer = () => {
           {flashHours < 10 ? `0${flashHours}` : `${flashHours}`}
         </p>
         <p className="text-center bg-primaryColor py-2 px-3 text-white font-medium text-2xl">
-          {flashMinutes}
+          {flashMinutes < 10 ? `0${flashMinutes}` : `${flashMinutes}`}
         </p>
         <p className="text-center bg-primaryColor py-2 px-3 text-white font-medium text-2xl">
           {flashSeconds < 10 ? `0${flashSeconds}` : `${flashSeconds}`}

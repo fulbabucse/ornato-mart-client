@@ -1,19 +1,11 @@
 import React from "react";
-import { useContext } from "react";
 import { useReducer } from "react";
-import { useState } from "react";
 import { createContext } from "react";
-import toast from "react-hot-toast";
-import { AuthContexts } from "../AuthProvider/AuthProvider";
 
 export const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
-  const [search, setSearch] = useState("");
-  const { user } = useContext(AuthContexts);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  const initialState = 0;
+  const initialState = 1;
   const reducer = (state, action) => {
     if (action.type === "Increment") {
       return state + 1;
@@ -26,36 +18,7 @@ const ProductsProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const email = user?.email;
-  const handleAddToCart = (product) => {
-    if (!user?.email) {
-      toast.error("Please Login");
-      return;
-    }
-
-    const newProduct = { ...product, email };
-
-    fetch("http://localhost:5000/cart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newProduct),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast.success("Product cart success");
-        console.log(data);
-      })
-      .catch((err) => console.error(err));
-  };
-
   const productInfo = {
-    handleAddToCart,
-    totalPrice,
-    setTotalPrice,
-    search,
-    setSearch,
     state,
     dispatch,
   };
