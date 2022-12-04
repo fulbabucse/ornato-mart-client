@@ -6,6 +6,7 @@ import Product from "../../shared/Product/Product";
 
 const Products = () => {
   const [isSort, setIsSort] = useState(false);
+  const [showMore, setShowMore] = useState(10);
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products", isSort],
@@ -15,6 +16,12 @@ const Products = () => {
       return data;
     },
   });
+
+  const sliceProducts = products.slice(0, showMore);
+
+  const handleShowMore = () => {
+    setShowMore(showMore + showMore);
+  };
 
   if (isLoading) {
     return <Spinner></Spinner>;
@@ -46,16 +53,25 @@ const Products = () => {
       focus:text-gray-700 focus:bg-white focus:border-primaryColor focus:outline-none"
               aria-label="Default select example"
             >
-              <option value="high">Low to High</option>
               <option value="low">High to Low</option>
+              <option value="high">Low to High</option>
             </select>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
-        {products?.map((product) => (
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
+        {sliceProducts?.map((product) => (
           <Product key={product?._id} product={product}></Product>
         ))}
+      </div>
+
+      <div className="mt-4 text-center">
+        <button
+          onClick={() => handleShowMore()}
+          className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold px-4 py-2 rounded-md  text-sm text-opacity-90 hover:text-opacity-100 w-40"
+        >
+          Load More
+        </button>
       </div>
     </div>
   );

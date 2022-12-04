@@ -48,8 +48,8 @@ const Product = ({ product }) => {
             />
           </p>
           <div className="p-6">
-            <h5 className="text-gray-700 text-md font-bold mb-2 capitalize">
-              {product_name}
+            <h5 className="text-gray-700 text-sm font-medium mb-2 capitalize">
+              {product_name.slice(0, 40)}
             </h5>
             <div className="text-lg font-semibold">
               <div>

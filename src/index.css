@@ -13,7 +13,7 @@ font-family: "Roboto Mono", monospace; */
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  background-color: #eff0f5;
   -moz-osx-font-smoothing: grayscale;
 }
 
