@@ -1,0 +1,357 @@
+[
+  {
+    "province_name": "Rangpur",
+    "city_name": "Rangpur",
+    "area": [
+      "Rangpur Sadar",
+      "Badarganj",
+      "Mithapukur",
+      "Pirgonj",
+      "Pirgacha",
+      "Taragonj"
+    ]
+  },
+  {
+    "province_name": "Rangpur",
+    "city_name": "Dinajpur",
+    "area": [
+      "Dinajpur Sadar",
+      "Birampur",
+      "Birgonj",
+      "Fulbari",
+      "Ghoraghat",
+      "Chirirbandor"
+    ]
+  },
+  {
+    "province_name": "Rangpur",
+    "city_name": "Gaibandha",
+    "area": ["Gaibandha Sadar", "Gobindagonj", "Polashbari", "Sundargonj"]
+  },
+  {
+    "province_name": "Rangpur",
+    "city_name": "Nilphamari",
+    "area": [
+      "Nilphamari Sadar",
+      "Syeddpur",
+      "Jaldhaka",
+      "Dimla",
+      "Domar",
+      "Kishoreganj"
+    ]
+  },
+  {
+    "province_name": "Rangpur",
+    "city_name": "Lalmonirhat",
+    "area": [
+      "Lalmonirhat Sadar",
+      "Aditmari",
+      "Hatibandha",
+      "Patgram",
+      "Kaliganj"
+    ]
+  },
+  {
+    "province_name": "Rangpur",
+    "city_name": "Kurigram",
+    "area": [
+      "Kurigram Sadar",
+      "Bhurungamari",
+      "Nageshori",
+      "Phulbari",
+      "Raomari",
+      "Ulipur"
+    ]
+  },
+  {
+    "province_name": "Rangpur",
+    "city_name": "Thakurgaon",
+    "area": ["Thakurgaon Sadar", "Ranisankail", "Pirganj", "Haripur"]
+  },
+  {
+    "province_name": "Rangpur",
+    "city_name": "Panchagarh",
+    "area": ["Panchagarh Sadar", "Tetulia", "Debiganj"]
+  },
+
+  {
+    "province_name": "Dhaka",
+    "city_name": "Dhaka",
+    "area": ["Dhaka Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Gazipur",
+    "area": ["Gazipur Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "kishoreganj",
+    "area": ["kishoreganj Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Manikganj",
+    "area": ["Manikganj Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Munshiganj",
+    "area": ["Munshiganj Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Narayanganj",
+    "area": ["Narayanganj Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Narsingdi",
+    "area": ["Narsingdi Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Tangail",
+    "area": ["Tangail Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Faridpur",
+    "area": ["Faridpur Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Gopalganj",
+    "area": ["Gopalganj Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Madaripur",
+    "area": ["Madaripur Sadar"]
+  },
+  {
+    "province_name": "Dhaka",
+    "city_name": "Rajbari",
+    "area": ["Rajbari Sadar"]
+  },
+  {
+    "city_name": "Shariatpur",
+    "area": ["Shariatpur Sadar"]
+  },
+  {
+    "province_name": "Mymenshingh",
+    "city_name": "Mymenshingh",
+    "area": ["Mymenshingh Sadar"]
+  },
+  {
+    "province_name": "Mymenshingh",
+    "city_name": "Jamalpur",
+    "area": ["Jamalpur Sadar"]
+  },
+  {
+    "province_name": "Mymenshingh",
+    "city_name": "Netrokona",
+    "area": ["Netrokona Sadar"]
+  },
+  {
+    "province_name": "Mymenshingh",
+    "city_name": "Sherpur",
+    "area": ["Sherpur Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Rajshahi",
+    "area": ["Rajshahi Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Natore",
+    "area": ["Natore Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Sirajganj",
+    "area": ["Sirajganj Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Pabna",
+    "area": ["Pabna Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Bogura",
+    "area": ["Bogura Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Naogaon",
+    "area": ["Naogaon Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Joypurhat",
+    "area": ["Joypurhat Sadar"]
+  },
+  {
+    "province_name": "Rajshahi",
+    "city_name": "Chapainawabganj",
+    "area": ["Chapainawabganj Sadar"]
+  },
+
+  {
+    "province_name": "Sylhet",
+    "city_name": "Sylhet",
+    "area": ["Sylhet Sadar"]
+  },
+  {
+    "province_name": "Sylhet",
+    "city_name": "Moulvibazar",
+    "area": ["Moulvibazar Sadar"]
+  },
+  {
+    "province_name": "Sylhet",
+    "city_name": "Habiganj",
+    "area": ["Habiganj Sadar"]
+  },
+  {
+    "province_name": "Sylhet",
+    "city_name": "Sunamganj",
+    "area": ["Sunamganj Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Chattogram",
+    "area": ["Chattogram Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Khagrachhari",
+    "area": ["Khagrachhari Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Rangamati",
+    "area": ["Rangamati Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Bandarban",
+    "area": ["Bandarban Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Cox's Bazar",
+    "area": ["Cox's Bazar Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Brahmanbaria",
+    "area": ["Brahmanbaria Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Comilla",
+    "area": ["Comilla Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Chandpur",
+    "area": ["Chandpur Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Lakshmipur",
+    "area": ["Lakshmipur Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Noakhali",
+    "area": ["Noakhali Sadar"]
+  },
+  {
+    "province_name": "Chattogram",
+    "city_name": "Feni",
+    "area": ["Feni Sadar"]
+  },
+  {
+    "province_name": "Barisal",
+    "city_name": "Barisal",
+    "area": ["Barisal Sadar"]
+  },
+  {
+    "province_name": "Barisal",
+    "city_name": "Barguna",
+    "area": ["Barguna Sadar"]
+  },
+  {
+    "province_name": "Barisal",
+    "city_name": "Bhola",
+    "area": ["Bhola Sadar"]
+  },
+  {
+    "province_name": "Barisal",
+    "city_name": "Jhalokati",
+    "area": ["Jhalokati Sadar"]
+  },
+  {
+    "province_name": "Barisal",
+    "city_name": "Patuakhali",
+    "area": ["Patuakhali Sadar"]
+  },
+  {
+    "province_name": "Barisal",
+    "city_name": "Pirojpur",
+    "area": ["Pirojpur Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Khulna",
+    "area": ["Khulna Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Bagerhat",
+    "area": ["Bagerhat Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Chuadanga",
+    "area": ["Chuadanga Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Jashore",
+    "area": ["Jashore Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Jhenaidah",
+    "area": ["Jhenaidah Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Kushtia",
+    "area": ["Kushtia Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Magura",
+    "area": ["Magura Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Meherpur",
+    "area": ["Meherpur Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Narail",
+    "area": ["Narail Sadar"]
+  },
+  {
+    "province_name": "Khulna",
+    "city_name": "Satkhira",
+    "area": ["Satkhira Sadar"]
+  }
+]

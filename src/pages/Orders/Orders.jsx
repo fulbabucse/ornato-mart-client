@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Spinner from "../../Components/Spinner";
 import { AuthContexts } from "../../contexts/AuthProvider/AuthProvider";
 import CartProduct from "./CartProduct/CartProduct";
+import ModalForm from "./ModalForm";
 
 const Orders = () => {
   const { user } = useContext(AuthContexts);
@@ -48,7 +49,6 @@ const Orders = () => {
   const withOutTax = price?.reduce((total, value) => {
     return total + value;
   }, 0);
-  console.log(withOutTax);
 
   const shipping = 50;
   const tax = withOutTax * 0.05;
@@ -61,34 +61,19 @@ const Orders = () => {
     return <Spinner></Spinner>;
   }
 
-  /*
-    const price = [];
-  orders.map((order) => {
-    price.push(parseInt(order.price));
-  });
-
-  const subTotalPrice = price.reduce((total, value) => {
-    return total + value;
-  });
-
-  const shipping = 10;
-  const tax = subTotalPrice * 0.04;
-
-  const totalPrice = subTotalPrice + shipping + Math.ceil(tax);
-  */
-
   return (
     <div className="text-baseColor">
       {orders?.length > 0 ? (
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row shadow-md my-10">
             <div className="w-full lg:w-3/4 bg-white px-10 py-10">
-              <div className="flex justify-between border-b pb-8">
-                <h1 className="font-semibold text-2xl">Products</h1>
-                <h2 className="font-semibold text-2xl">
-                  {orders?.length} Items
-                </h2>
-              </div>
+              <button
+                className="text-blue-500 bg-transparent w-full border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 active show"
+                data-bs-toggle="modal"
+                data-bs-target="#shippingBillingModalForm"
+              >
+                Add Shipping & Billing Address
+              </button>
               <div className="flex mt-10 mb-5">
                 <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
                   Product Details
@@ -168,6 +153,7 @@ const Orders = () => {
                 </button>
               </div>
             </div>
+            <ModalForm />
           </div>
         </div>
       ) : (

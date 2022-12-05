@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import Spinner from "../../Components/Spinner";
 import { AuthContexts } from "../../contexts/AuthProvider/AuthProvider";
 
 const PrivateRoute = ({ children }) => {
@@ -8,16 +9,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center space-x-2">
-        <div
-          className="spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0"
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (user) {
