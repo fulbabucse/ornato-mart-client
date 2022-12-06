@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { AuthContexts } from "../../contexts/AuthProvider/AuthProvider";
 
 const ModalForm = () => {
@@ -45,7 +46,27 @@ const ModalForm = () => {
   });
 
   const handleSaveAddress = (data) => {
-    console.log(data);
+    const updatedData = {
+      address: data.address,
+      area: data.area,
+      phone: data.phoneNumber,
+      province,
+      city: areaCities,
+    };
+
+    fetch(`http://localhost:5000/users?email=${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged && data.modifiedCount) {
+          toast.success("successfully added your Shipping & Billing Address");
+        }
+      });
   };
 
   return (
@@ -128,11 +149,11 @@ const ModalForm = () => {
                     />
                   </div>
 
-                  <div class="flex justify-center">
-                    <div class="w-full">
+                  <div className="flex justify-center">
+                    <div className="w-full">
                       <select
                         onBlur={(e) => setProvince(e.target.value)}
-                        class="form-select focus:shadow-none appearance-none
+                        className="form-select focus:shadow-none appearance-none
       block
       w-full
       px-3
@@ -162,11 +183,11 @@ const ModalForm = () => {
                     </div>
                   </div>
 
-                  <div class="flex justify-center">
-                    <div class="w-full">
+                  <div className="flex justify-center">
+                    <div className="w-full">
                       <select
                         onBlur={(e) => setAreaCities(e.target.value)}
-                        class="form-select focus:shadow-none appearance-none
+                        className="form-select focus:shadow-none appearance-none
       block
       w-full
       px-3
@@ -192,10 +213,13 @@ const ModalForm = () => {
                       </select>
                     </div>
                   </div>
-                  <div class="flex justify-center">
-                    <div class="w-full">
+                  <div className="flex justify-center">
+                    <div className="w-full">
                       <select
-                        class="form-select focus:shadow-none appearance-none
+                        {...register("area", {
+                          required: "Area is required",
+                        })}
+                        className="form-select focus:shadow-none appearance-none
       block
       w-full
       px-3
@@ -221,6 +245,11 @@ const ModalForm = () => {
                           ));
                         })}
                       </select>
+                      {errors.area && (
+                        <p className="text-red-400 text-sm font-medium">
+                          {errors.area?.message}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -301,7 +330,6 @@ const ModalForm = () => {
                     <button
                       type="submit"
                       className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
-                      data-bs-dismiss="modal"
                     >
                       Submit
                     </button>

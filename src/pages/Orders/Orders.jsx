@@ -26,6 +26,15 @@ const Orders = () => {
     },
   });
 
+  const { data: databaseUser = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const handleDeleteProduct = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
@@ -61,19 +70,23 @@ const Orders = () => {
     return <Spinner></Spinner>;
   }
 
+  const { address, area, city, phone, province } = databaseUser;
+
   return (
     <div className="text-baseColor">
       {orders?.length > 0 ? (
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row shadow-md my-10">
             <div className="w-full lg:w-3/4 bg-white px-10 py-10">
-              <button
-                className="text-blue-500 bg-transparent w-full border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 active show"
-                data-bs-toggle="modal"
-                data-bs-target="#shippingBillingModalForm"
-              >
-                Add Shipping & Billing Address
-              </button>
+              {!databaseUser && (
+                <button
+                  className="text-blue-500 bg-transparent w-full border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 active show"
+                  data-bs-toggle="modal"
+                  data-bs-target="#shippingBillingModalForm"
+                >
+                  Add Shipping & Billing Address
+                </button>
+              )}
               <div className="flex mt-10 mb-5">
                 <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
                   Product Details
@@ -112,6 +125,14 @@ const Orders = () => {
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary
               </h1>
+              {databaseUser && (
+                <>
+                  <p>Billing Address: </p>
+                  <p className="text-sm">
+                    {address}, {area}, {city}, {province}, Bangladesh
+                  </p>
+                </>
+              )}
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">
                   Items {orders.length}
@@ -149,7 +170,7 @@ const Orders = () => {
                   <span>৳{totalPrice}</span>
                 </div>
                 <button className="bg-primaryColor/80 font-semibold hover:bg-primaryColor py-3 text-sm text-white uppercase w-full">
-                  Checkout
+                  Proceed to Checkout
                 </button>
               </div>
             </div>

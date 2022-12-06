@@ -53,6 +53,17 @@ const ProductDetails = () => {
     },
   });
 
+  const { data: databaseUser = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  const { address, area, city, phone, province } = databaseUser;
+
   if (isLoading) {
     return <Spinner></Spinner>;
   }
@@ -218,7 +229,7 @@ const ProductDetails = () => {
           <div className="flex items-center gap-1">
             <FaLocationArrow className="text-gray-7"></FaLocationArrow>
             <p className="text-sm">
-              Dhaka, Dhaka North, Banani Road No. 12 - 19
+              {address}, {area}, {city}, {province}, Bangladesh
             </p>
           </div>
           <div className="flex justify-between">
