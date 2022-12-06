@@ -6,6 +6,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logo from "../../../assets/logo/logo.png";
 
 const Footer = () => {
   return (
@@ -15,9 +16,7 @@ const Footer = () => {
           <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="mb-10 w-full">
               <Link to="/">
-                <h1 className="text-3xl font-bold text-orange-400 uppercase mb-4">
-                  Ornato Mart
-                </h1>
+                <img src={logo} alt="" />
               </Link>
               <p className="text-body-color mb-7 text-base">
                 Sed ut perspiciatis undmnis is iste natus error sit amet

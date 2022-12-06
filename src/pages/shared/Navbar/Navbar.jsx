@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { FaCartArrowDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
+import logo from "../../../assets/logo/logo.png";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { useAdmin } from "../../../hooks/useAdmin";
@@ -123,11 +124,9 @@ const Navbar = () => {
         <div className="container px-4 mx-auto">
           <div className="lg:flex lg:items-center">
             <div className="flex items-center justify-between my-3">
-              <div className="w-full">
+              <div className="w-24 h-10">
                 <Link to="/">
-                  <h1 className="text-center lg:text-start text-xl lg:text-3xl font-bold text-orange-400 uppercase">
-                    Ornato Mart
-                  </h1>
+                  <img src={logo} alt="" />
                 </Link>
               </div>
             </div>

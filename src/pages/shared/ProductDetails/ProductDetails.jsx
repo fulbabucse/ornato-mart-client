@@ -17,8 +17,10 @@ import SimilarProducts from "./SimilarProducts";
 import Spinner from "../../../Components/Spinner";
 import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const ProductDetails = () => {
+  const [isSort, setIsSort] = useState("");
   const { user } = useContext(AuthContexts);
   const { state, dispatch } = useContext(ProductsContext);
   const product = useLoaderData();
@@ -52,6 +54,8 @@ const ProductDetails = () => {
       return data;
     },
   });
+
+  console.log(reviews);
 
   const { data: databaseUser = [] } = useQuery({
     queryKey: ["users"],
@@ -290,10 +294,48 @@ const ProductDetails = () => {
         <h4 className="text-xl text-baseColor font-medium">
           Review & Rating of {product_name}
         </h4>
-        <ReviewForm product={product} refetch={refetch}></ReviewForm>
-        <p className="text-sm border border-gray-300 p-3 rounded-sm">
-          Total ({reviews.length}) Review
-        </p>
+        {!user && (
+          <p>
+            Please
+            <Link className="text-primaryColor mx-1" to="/login">
+              login
+            </Link>
+            and share your valuable opinion
+          </p>
+        )}
+        {user?.email && (
+          <ReviewForm product={product} refetch={refetch}></ReviewForm>
+        )}
+        <div className="text-sm flex mt-2 items-center justify-between border border-gray-300 p-3 rounded-sm">
+          <p>Total ({reviews.length}) Review</p>
+          <div className="flex items-center gap-2">
+            <p className="text-sm">Sort by rating:</p>
+            <div className="w-32">
+              <select
+                onChange={(e) => setIsSort(e.target.value)}
+                className="form-select focus:shadow-none appearance-none
+      block
+      px-3
+      py-1.5
+      text-sm
+      w-full
+      cursor-pointer
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-primaryColor focus:outline-none"
+                aria-label="Default select example"
+              >
+                <option value="low">High to Low</option>
+                <option value="high">Low to High</option>
+              </select>
+            </div>
+          </div>
+        </div>
         <div>
           {reviews?.map((review) => (
             <ProductReview key={review?._id} review={review}></ProductReview>
