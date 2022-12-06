@@ -5,11 +5,28 @@ import { AuthContexts } from "../../../contexts/AuthProvider/AuthProvider";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { useAdmin } from "../../../hooks/useAdmin";
+import Top from "./Top";
 
 const Navbar = () => {
   const { user, userSignOut } = useContext(AuthContexts);
 
   const [isAdmin] = useAdmin(user?.email);
+
+  const { data: orders = [] } = useQuery({
+    queryKey: ["cart", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/cart?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
+          },
+        }
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   const { data: mensSubCategory = [] } = useQuery({
     queryKey: ["men"],
@@ -101,6 +118,7 @@ const Navbar = () => {
 
   return (
     <div>
+      <Top />
       <nav className="bg-white shadow dark:bg-gray-800">
         <div className="container px-4 mx-auto">
           <div className="lg:flex lg:items-center">
@@ -274,12 +292,15 @@ const Navbar = () => {
               </li>
 
               <div className="flex flex-col items-center transition-all duration-300 ease-in-out  text-gray-600 capitalize dark:text-gray-300 lg:flex lg:-mx-4 lg:flex-row lg:items-center justify-end gap-10 lg:absolute lg:right-10">
-                <div className="flex gap-4 lg:px-10 items-center">
+                <div className="flex gap-4 lg:px-10 justify-center items-center">
                   <li className="list-none">
                     {user?.uid && (
                       <li className="text-gray-600 hover:text-primaryColor list-none">
-                        <Link to="/orders">
-                          <FaCartArrowDown className="text-3xl font-bold text-primaryColor"></FaCartArrowDown>
+                        <Link to="/orders" className="flex gap-1">
+                          <FaCartArrowDown className="text-xl font-bold text-primaryColor"></FaCartArrowDown>
+                          <sup className="text-xl text-primaryColor">
+                            {orders?.length}
+                          </sup>
                         </Link>
                       </li>
                     )}

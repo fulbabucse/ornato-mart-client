@@ -20,7 +20,7 @@ const HomeFlashSale = () => {
     <div className="my-2">
       <h3 className="text-xl font-bold text-gray-600">Flash Sale</h3>
       <div className="bg-white p-4 flex flex-col justify-between items-center w-full">
-        <div className="bg-white flex justify-between items-center w-full border-b border-b-gray-300 pb-3">
+        <div className="bg-white flex flex-wrap justify-between items-center w-full border-b border-b-gray-300 pb-3">
           <div className="flex gap-6 items-center">
             <p className="text-primaryColor">On Sale Now</p>
             <div className="flex items-center gap-2">

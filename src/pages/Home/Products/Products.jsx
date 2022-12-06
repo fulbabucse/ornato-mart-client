@@ -28,7 +28,7 @@ const Products = () => {
   }
 
   return (
-    <div>
+    <div className="px-4 lg:px-0">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-xl font-bold text-gray-600">Just For You</h3>
         <div className="flex items-center gap-2">

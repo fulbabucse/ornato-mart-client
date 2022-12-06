@@ -142,7 +142,10 @@ const ProductDetails = () => {
               <p className="text-sm text-gray-600 capitalize">
                 Category:
                 <span className="text-gray-800">
-                  <Link className="mx-1" to={`/category/${category_name}`}>
+                  <Link
+                    className="mx-1 hover:text-primaryColor hover:border-b hover:border-b-primaryColor transition-all duration-150 ease-in-out"
+                    to={`/category/${category_name}`}
+                  >
                     {category_name}
                   </Link>
                   | {subCategory_name}
@@ -261,7 +264,7 @@ const ProductDetails = () => {
           <div className="">
             <small>Sold by</small>
             <Link to={`/shop/${seller_name}`}>
-              <h3 className="text-xl font-semibold text-gray-700">
+              <h3 className="text-xl font-semibold text-gray-700 hover:text-primaryColor  transition-all duration-150 ease-in-out">
                 {seller_name}
               </h3>
             </Link>
