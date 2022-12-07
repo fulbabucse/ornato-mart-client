@@ -32,7 +32,7 @@ const Products = () => {
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-xl font-bold text-gray-600">Just For You</h3>
         <div className="flex items-center gap-2">
-          <p className="text-sm">Sort by:</p>
+          <p className="text-sm">Sort by Price:</p>
           <div className="w-32">
             <select
               onChange={(e) => setIsSort(e.target.value)}
@@ -53,6 +53,7 @@ const Products = () => {
       focus:text-gray-700 focus:bg-white focus:border-primaryColor focus:outline-none"
               aria-label="Default select example"
             >
+              <option selected>Best Matches</option>
               <option value="low">High to Low</option>
               <option value="high">Low to High</option>
             </select>

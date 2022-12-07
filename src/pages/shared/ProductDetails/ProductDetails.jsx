@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 
 const ProductDetails = () => {
-  const [isSort, setIsSort] = useState("");
+  const [isRatingSort, setIsRatingSort] = useState(false);
   const { user } = useContext(AuthContexts);
   const { state, dispatch } = useContext(ProductsContext);
   const product = useLoaderData();
@@ -47,9 +47,11 @@ const ProductDetails = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["reviews", price],
+    queryKey: ["reviews", price, isRatingSort],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/reviews?productId=${_id}`);
+      const res = await fetch(
+        `http://localhost:5000/reviews?productId=${_id}&rating=${isRatingSort}`
+      );
       const data = await res.json();
       return data;
     },
@@ -66,7 +68,7 @@ const ProductDetails = () => {
     },
   });
 
-  const { address, area, city, phone, province } = databaseUser;
+  const { address, area, city, province } = databaseUser;
 
   if (isLoading) {
     return <Spinner></Spinner>;
@@ -236,7 +238,14 @@ const ProductDetails = () => {
           <div className="flex items-center gap-1">
             <FaLocationArrow className="text-gray-7"></FaLocationArrow>
             <p className="text-sm">
-              {address}, {area}, {city}, {province}, Bangladesh
+              {user ? (
+                <>
+                  {address}, {area}, {city}, {province}
+                </>
+              ) : (
+                "1210 Mirpur, Dhaka"
+              )}
+              ,Bangladesh
             </p>
           </div>
           <div className="flex justify-between">
@@ -312,7 +321,7 @@ const ProductDetails = () => {
             <p className="text-sm">Sort by rating:</p>
             <div className="w-32">
               <select
-                onChange={(e) => setIsSort(e.target.value)}
+                onChange={(e) => setIsRatingSort(e.target.value)}
                 className="form-select focus:shadow-none appearance-none
       block
       px-3
@@ -330,8 +339,8 @@ const ProductDetails = () => {
       focus:text-gray-700 focus:bg-white focus:border-primaryColor focus:outline-none"
                 aria-label="Default select example"
               >
-                <option value="low">High to Low</option>
-                <option value="high">Low to High</option>
+                <option value="highRating">Low to High</option>
+                <option value="lowRating">High to Low</option>
               </select>
             </div>
           </div>
