@@ -255,7 +255,7 @@ const AddProduct = () => {
                 <option selected>Select one Services Type</option>
                 <option defaultValue="Installment">Installment</option>
                 <option defaultValue="Cash on Delivery">
-                  Cash on Delivery
+                  Cash on Delivery Not Available
                 </option>
                 <option defaultValue="Free Shipping">Free Shipping</option>
               </select>

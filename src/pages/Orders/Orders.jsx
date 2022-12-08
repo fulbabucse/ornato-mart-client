@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Spinner from "../../Components/Spinner";
@@ -10,7 +11,11 @@ import ModalForm from "./ModalForm";
 const Orders = () => {
   const { user } = useContext(AuthContexts);
 
-  const { data: orders = [], isLoading } = useQuery({
+  const {
+    data: orders = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await fetch(
@@ -36,6 +41,7 @@ const Orders = () => {
   });
 
   const handleDeleteProduct = (id) => {
+    console.log(id);
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
       fetch(`http://localhost:5000/cart/${id}`, {
@@ -45,7 +51,12 @@ const Orders = () => {
         },
       })
         .then((res) => res.json())
-        .then((data) => {})
+        .then((data) => {
+          if (data.acknowledged) {
+            toast.success("Successfully Remove Product");
+            refetch();
+          }
+        })
         .catch((err) => console.error(err));
     }
   };
@@ -78,7 +89,7 @@ const Orders = () => {
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row shadow-md my-10">
             <div className="w-full lg:w-3/4 bg-white px-10 py-10">
-              {!databaseUser && (
+              {!databaseUser?.province && (
                 <button
                   className="text-blue-500 bg-transparent w-full border border-solid border-blue-500 hover:bg-blue-500 hover:text-white active:bg-blue-600 font-bold text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 active show"
                   data-bs-toggle="modal"
@@ -125,12 +136,16 @@ const Orders = () => {
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary
               </h1>
-              {databaseUser && (
+              {databaseUser?.province ? (
                 <>
                   <p>Billing Address: </p>
                   <p className="text-sm">
                     {address}, {area}, {city}, {province}, Bangladesh
                   </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm">1210 Mirpur, Dhaka, Bangladesh</p>
                 </>
               )}
               <div className="flex justify-between mt-10 mb-5">

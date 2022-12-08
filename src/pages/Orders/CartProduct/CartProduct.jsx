@@ -34,8 +34,12 @@ const CartProduct = ({ order, handleDeleteProduct }) => {
       <div className="flex justify-center w-1/5">
         <p>{quantity}</p>
       </div>
-      <span className="text-center w-1/5 font-semibold text-sm">${price}</span>
-      <span className="text-center w-1/5 font-semibold text-sm">${total}</span>
+      <span className="text-center w-1/5 font-semibold text-sm">
+        ${price.toFixed(2)}
+      </span>
+      <span className="text-center w-1/5 font-semibold text-sm">
+        ${total.toFixed(2)}
+      </span>
     </div>
   );
 };

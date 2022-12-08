@@ -21,6 +21,7 @@ import { useState } from "react";
 
 const ProductDetails = () => {
   const [isRatingSort, setIsRatingSort] = useState(false);
+  const [wearSize, setWearSize] = useState("");
   const { user } = useContext(AuthContexts);
   const { state, dispatch } = useContext(ProductsContext);
   const product = useLoaderData();
@@ -57,8 +58,6 @@ const ProductDetails = () => {
     },
   });
 
-  console.log(reviews);
-
   const { data: databaseUser = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -76,11 +75,23 @@ const ProductDetails = () => {
 
   const newPrice = price - (price * parseInt(product_discount)) / 100;
 
+  console.log(product);
+
   const newProduct = {
-    ...product,
-    newPrice,
     quantity: state,
+    size: wearSize,
     email: user?.email,
+    brand_name,
+    category_name,
+    product_image,
+    product_name,
+    product_rating,
+    product_warranty,
+    service_type,
+    subCategory_name,
+    price: newPrice,
+    productId: _id,
+    size: wearSize,
   };
 
   const ratingStar = Array.from({ length: 5 }, (_, i) => {
@@ -102,6 +113,11 @@ const ProductDetails = () => {
   const handleAddToCart = (product) => {
     if (!user) {
       toast.error("Please Login or SignUp");
+      return;
+    }
+
+    if (!wearSize) {
+      toast.error("Please select wear size.");
       return;
     }
 
@@ -180,8 +196,22 @@ const ProductDetails = () => {
                   Wear Size:
                   <span className="ml-4 flex gap-3">
                     {product_size?.split(",")?.map((p) => (
-                      <div className="border border-gray-300 hover:border-primaryColor focus:border-primaryColor py-1 px-2 rounded-md">
-                        <button>{p}</button>
+                      <div>
+                        <div class="form-check flex items-center">
+                          <input
+                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id={p}
+                          />
+                          <label
+                            class="form-check-label inline-block text-gray-800"
+                            for={p}
+                            onClick={() => setWearSize(p)}
+                          >
+                            {p}
+                          </label>
+                        </div>
                       </div>
                     ))}
                   </span>

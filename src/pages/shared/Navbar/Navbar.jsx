@@ -305,7 +305,7 @@ const Navbar = () => {
                     )}
                   </li>
 
-                  {isAdmin && (
+                  {isAdmin && user?.email && (
                     <li className="list-none">
                       <Link to="/dashboard">
                         <h5>Dashboard</h5>
