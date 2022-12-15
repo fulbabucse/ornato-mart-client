@@ -80,8 +80,33 @@ const Orders = () => {
   if (isLoading) {
     return <Spinner></Spinner>;
   }
-
   const { address, area, city, phone, province } = databaseUser;
+
+  const order = {
+    customer_name: user?.displayName,
+    email: user?.email,
+    phone,
+    price: totalPrice,
+    address,
+    area,
+    city,
+    province,
+  };
+
+  const handleCheckout = () => {
+    fetch("http://localhost:5000/ordered", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.replace(data.redirectURL);
+      });
+  };
 
   return (
     <div className="text-baseColor">
@@ -184,7 +209,10 @@ const Orders = () => {
                   <span>Total cost</span>
                   <span>৳{totalPrice}</span>
                 </div>
-                <button className="bg-primaryColor/80 font-semibold hover:bg-primaryColor py-3 text-sm text-white uppercase w-full">
+                <button
+                  onClick={() => handleCheckout()}
+                  className="bg-primaryColor/80 font-semibold hover:bg-primaryColor py-3 text-sm text-white uppercase w-full"
+                >
                   Proceed to Checkout
                 </button>
               </div>

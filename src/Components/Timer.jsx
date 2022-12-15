@@ -11,7 +11,7 @@ const Timer = () => {
   let timeInterVal;
 
   const startFlashSaleTime = () => {
-    const countDownDate = new Date("Dec 12,2022").getTime();
+    const countDownDate = new Date("Dec 28,2022").getTime();
     timeInterVal = setInterval(() => {
       const nowTime = new Date().getTime();
       const timeDistance = countDownDate - nowTime;
