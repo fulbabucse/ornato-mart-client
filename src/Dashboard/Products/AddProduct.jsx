@@ -39,7 +39,7 @@ const AddProduct = () => {
           subCategory_name: productData.subCategory_name,
           seller_name: productData.seller_name,
         };
-        fetch("http://localhost:5000/products", {
+        fetch("https://ornato-mart-server.vercel.app/products", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -61,7 +61,9 @@ const AddProduct = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch(
+        "https://ornato-mart-server.vercel.app/categories"
+      );
       const data = await res.json();
       return data;
     },
@@ -70,7 +72,7 @@ const AddProduct = () => {
   const { data: sellers = [] } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sellers");
+      const res = await fetch("https://ornato-mart-server.vercel.app/sellers");
       const data = await res.json();
       return data;
     },
@@ -79,7 +81,9 @@ const AddProduct = () => {
   const { data: subCategories = [] } = useQuery({
     queryKey: ["sub-categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sub-categories");
+      const res = await fetch(
+        "https://ornato-mart-server.vercel.app/sub-categories"
+      );
       const data = await res.json();
       return data;
     },

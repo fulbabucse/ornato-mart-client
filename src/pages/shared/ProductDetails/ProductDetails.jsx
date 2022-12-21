@@ -51,7 +51,7 @@ const ProductDetails = () => {
     queryKey: ["reviews", price, isRatingSort],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/reviews?productId=${_id}&rating=${isRatingSort}`
+        `https://ornato-mart-server.vercel.app/reviews?productId=${_id}&rating=${isRatingSort}`
       );
       const data = await res.json();
       return data;
@@ -61,7 +61,9 @@ const ProductDetails = () => {
   const { data: databaseUser = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const res = await fetch(
+        `https://ornato-mart-server.vercel.app/users/${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -121,7 +123,7 @@ const ProductDetails = () => {
       return;
     }
 
-    fetch("http://localhost:5000/cart", {
+    fetch("https://ornato-mart-server.vercel.app/cart", {
       method: "POST",
       headers: {
         "content-type": "application/json",

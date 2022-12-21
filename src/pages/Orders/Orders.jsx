@@ -19,7 +19,7 @@ const Orders = () => {
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/cart?email=${user?.email}`,
+        `https://ornato-mart-server.vercel.app/cart?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
@@ -34,7 +34,9 @@ const Orders = () => {
   const { data: databaseUser = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const res = await fetch(
+        `https://ornato-mart-server.vercel.app/users/${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -44,7 +46,7 @@ const Orders = () => {
     console.log(id);
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
-      fetch(`http://localhost:5000/cart/${id}`, {
+      fetch(`https://ornato-mart-server.vercel.app/cart/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
@@ -94,7 +96,7 @@ const Orders = () => {
   };
 
   const handleCheckout = () => {
-    fetch("http://localhost:5000/ordered", {
+    fetch("https://ornato-mart-server.vercel.app/ordered", {
       method: "POST",
       headers: {
         "content-type": "application/json",

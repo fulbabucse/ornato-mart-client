@@ -9,7 +9,9 @@ const AddCategories = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch(
+        "https://ornato-mart-server.vercel.app/categories"
+      );
       const data = await res.json();
       return data;
     },
@@ -28,7 +30,7 @@ const AddCategories = () => {
       category_id,
     };
 
-    fetch("http://localhost:5000/sub-categories", {
+    fetch("https://ornato-mart-server.vercel.app/sub-categories", {
       method: "POST",
       headers: {
         "content-type": "application/json",

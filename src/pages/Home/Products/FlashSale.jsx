@@ -12,7 +12,9 @@ const FlashSale = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products", isSort],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/products?order=${isSort}`);
+      const res = await fetch(
+        `https://ornato-mart-server.vercel.app/products?order=${isSort}`
+      );
       const data = await res.json();
       return data;
     },

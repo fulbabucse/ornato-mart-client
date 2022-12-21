@@ -6,9 +6,8 @@ import logo from "../../../assets/logo/logo.png";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { useQuery } from "@tanstack/react-query";
 import { useAdmin } from "../../../hooks/useAdmin";
-import Top from "./Top";
+import Top from "../TopNavbar/Top";
 import { ProductsContext } from "../../../contexts/ProductsProvider/ProductsProvider";
-import { useState } from "react";
 
 const Navbar = () => {
   const { user, userSignOut } = useContext(AuthContexts);
@@ -20,7 +19,7 @@ const Navbar = () => {
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/cart?email=${user?.email}`,
+        `https://ornato-mart-server.vercel.app/cart?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("ornatoToken")}`,
@@ -35,7 +34,9 @@ const Navbar = () => {
   const { data: mensSubCategory = [] } = useQuery({
     queryKey: ["men"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sub-category/men");
+      const res = await fetch(
+        "https://ornato-mart-server.vercel.app/sub-category/men"
+      );
       const data = await res.json();
       return data;
     },
@@ -44,7 +45,9 @@ const Navbar = () => {
   const { data: womensSubCategory = [] } = useQuery({
     queryKey: ["women"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sub-category/women");
+      const res = await fetch(
+        "https://ornato-mart-server.vercel.app/sub-category/women"
+      );
       const data = await res.json();
       return data;
     },
@@ -54,7 +57,7 @@ const Navbar = () => {
     queryKey: ["electronics-devices"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/sub-category/electronics-devices"
+        "https://ornato-mart-server.vercel.app/sub-category/electronics-devices"
       );
       const data = await res.json();
       return data;
@@ -64,7 +67,9 @@ const Navbar = () => {
   const { data: babiesToyes = [] } = useQuery({
     queryKey: ["babies-toys"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sub-category/babies-toys");
+      const res = await fetch(
+        "https://ornato-mart-server.vercel.app/sub-category/babies-toys"
+      );
       const data = await res.json();
       return data;
     },
@@ -74,7 +79,7 @@ const Navbar = () => {
     queryKey: ["health-beauty"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/sub-category/health-beauty"
+        "https://ornato-mart-server.vercel.app/sub-category/health-beauty"
       );
       const data = await res.json();
       return data;
@@ -85,7 +90,7 @@ const Navbar = () => {
     queryKey: ["automotive-motorbike"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/sub-category/automotive-motorbike"
+        "https://ornato-mart-server.vercel.app/sub-category/automotive-motorbike"
       );
       const data = await res.json();
       return data;
@@ -96,7 +101,7 @@ const Navbar = () => {
     queryKey: ["electronics-accessories"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/sub-category/electronics-accessories"
+        "https://ornato-mart-server.vercel.app/sub-category/electronics-accessories"
       );
       const data = await res.json();
       return data;
@@ -107,7 +112,7 @@ const Navbar = () => {
     queryKey: ["tv-appliance"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/sub-category/tv-appliance"
+        "https://ornato-mart-server.vercel.app/sub-category/tv-appliance"
       );
       const data = await res.json();
       return data;

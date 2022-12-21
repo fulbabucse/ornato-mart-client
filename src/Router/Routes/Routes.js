@@ -14,6 +14,10 @@ import Category from "../../pages/shared/Category/Category";
 import Error from "../../pages/shared/Error/Error";
 import ProductDetails from "../../pages/shared/ProductDetails/ProductDetails";
 import Shop from "../../pages/shared/Shop/Shop";
+import CustomerCare from "../../pages/shared/TopNavbar/CustomerCare";
+import Donate from "../../pages/shared/TopNavbar/Donate";
+import SellOnOrnato from "../../pages/shared/TopNavbar/SellOnOrnato";
+import TrackMyOrders from "../../pages/shared/TopNavbar/TrackMyOrders";
 import Login from "../../pages/User/Login/Login";
 import Profile from "../../pages/User/Profile/Profile";
 import Register from "../../pages/User/Register/Register";
@@ -32,19 +36,21 @@ export const router = createBrowserRouter([
       {
         path: "/product/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://ornato-mart-server.vercel.app/product/${params.id}`),
         element: <ProductDetails></ProductDetails>,
       },
       {
         path: "/wow/flash-sale/product/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://ornato-mart-server.vercel.app/product/${params.id}`),
         element: <ProductDetails></ProductDetails>,
       },
       {
         path: "/shop/:shopName",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/sellers/${params.shopName}`),
+          fetch(
+            `https://ornato-mart-server.vercel.app/sellers/${params.shopName}`
+          ),
         element: <Shop></Shop>,
       },
       {
@@ -55,16 +61,24 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      { path: "ornato-donate-to-make-difference", element: <Donate /> },
+      { path: "/seller/register", element: <SellOnOrnato /> },
+      { path: "customer-care", element: <CustomerCare /> },
+      { path: "track-my-orders", element: <TrackMyOrders /> },
       {
         path: "/sub-category/:categoryName",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/sub_category/${params.categoryName}`),
+          fetch(
+            `https://ornato-mart-server.vercel.app/sub_category/${params.categoryName}`
+          ),
         element: <CategoryProducts></CategoryProducts>,
       },
       {
         path: "/category/:name",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.name}`),
+          fetch(
+            `https://ornato-mart-server.vercel.app/category/${params.name}`
+          ),
         element: <Category></Category>,
       },
       {

@@ -19,7 +19,9 @@ const ModalForm = () => {
   const { data: provinces = [] } = useQuery({
     queryKey: ["provinces"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/provinces");
+      const res = await fetch(
+        "https://ornato-mart-server.vercel.app/provinces"
+      );
       const data = await res.json();
       return data;
     },
@@ -29,7 +31,7 @@ const ModalForm = () => {
     queryKey: ["cities", province],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/cities?province=${province}`
+        `https://ornato-mart-server.vercel.app/cities?province=${province}`
       );
       const data = await res.json();
       return data;
@@ -39,7 +41,9 @@ const ModalForm = () => {
   const { data: areas = [] } = useQuery({
     queryKey: ["area", areaCities],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/area?area=${areaCities}`);
+      const res = await fetch(
+        `https://ornato-mart-server.vercel.app/area?area=${areaCities}`
+      );
       const data = await res.json();
       return data;
     },
@@ -54,7 +58,7 @@ const ModalForm = () => {
       city: areaCities,
     };
 
-    fetch(`http://localhost:5000/users?email=${user?.email}`, {
+    fetch(`https://ornato-mart-server.vercel.app/users?email=${user?.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

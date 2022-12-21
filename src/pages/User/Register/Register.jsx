@@ -77,7 +77,7 @@ const Register = () => {
       name,
       email,
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://ornato-mart-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

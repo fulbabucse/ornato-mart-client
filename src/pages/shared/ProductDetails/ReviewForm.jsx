@@ -38,7 +38,7 @@ const ReviewForm = ({ product, refetch }) => {
           review_message: userData.review_message,
         };
 
-        fetch("http://localhost:5000/reviews", {
+        fetch("https://ornato-mart-server.vercel.app/reviews", {
           method: "POST",
           headers: {
             "content-type": "application/json",

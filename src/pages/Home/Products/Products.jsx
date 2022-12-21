@@ -9,13 +9,13 @@ import Product from "../../shared/Product/Product";
 const Products = () => {
   const [isSort, setIsSort] = useState(false);
   const [showMore, setShowMore] = useState(10);
-  const { searchValue, setSearchValue } = useContext(ProductsContext);
+  const { searchValue } = useContext(ProductsContext);
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products", isSort, searchValue],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/products?search=${searchValue}&order=${isSort}`
+        `https://ornato-mart-server.vercel.app/products?search=${searchValue}&order=${isSort}`
       );
       const data = await res.json();
       return data;

@@ -12,7 +12,7 @@ const Shop = () => {
     queryKey: ["shop_products", seller_name],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/shop_products?shopName=${seller_name}`
+        `https://ornato-mart-server.vercel.app/shop_products?shopName=${seller_name}`
       );
       const data = await res.json();
       return data;

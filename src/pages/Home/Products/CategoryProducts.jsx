@@ -12,7 +12,7 @@ const CategoryProducts = () => {
     queryKey: ["sub_category_products", category_name, sub_category],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/sub_category_products?category=${category_name}&subCategory=${sub_category}`
+        `https://ornato-mart-server.vercel.app/sub_category_products?category=${category_name}&subCategory=${sub_category}`
       );
       const data = await res.json();
       return data;
